@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ApplyTemplate from "../../components/ApplyTemplate";
-import CareType from "../../components/CareType";
+import CareType from "../../components/CarePlace";
 
 type ApplyProps = {
   setRoute: React.Dispatch<React.SetStateAction<string>>;

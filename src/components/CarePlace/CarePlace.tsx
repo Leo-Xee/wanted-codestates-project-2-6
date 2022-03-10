@@ -63,16 +63,6 @@ function CareType() {
           </S.TypeDiagnose>
           <S.TypesubTitle>장기요양등급</S.TypesubTitle>
           <SelectBox />
-          {/* <select>
-            <option value="">선택</option>
-            {longtermLevel.map((level, index) => {
-              return (
-                <option value={level} key={index}>
-                  {level}
-                </option>
-              );
-            })}
-          </select> */}
 
           <S.TypesubTitle>선호 간병인 성별</S.TypesubTitle>
           <RadioBox
