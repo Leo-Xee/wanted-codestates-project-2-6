@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
   /* colors */
   :root {
     --primary: #FF8450;
@@ -9,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     --text-disabled: #D3D2D2;
     --btn-disabled: #E2E2E2;
     --bg-form: #F6F6F6;
+    --outline: #EEEEEE;
   }
   /* reset */
   *{margin:0;padding:0;font:inherit;color:inherit;}
