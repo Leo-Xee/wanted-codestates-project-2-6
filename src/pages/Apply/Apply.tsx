@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import RegisterAddress from "src/components/RegisterAddress/RegisterAddress";
 import ApplyTemplate from "../../components/ApplyTemplate";
 
 type ApplyProps = {
@@ -13,7 +14,8 @@ function Apply({ setRoute }: ApplyProps) {
       {step === 1 && <div>첫번째 스텝</div>}
       {step === 2 && <div>두번째 스텝</div>}
       {step === 3 && <div>세번째 스텝</div>}
-      {step === 4 && <div>네번째 스텝</div>}
+      {step === 4 && <RegisterAddress setRoute={setRoute} />}
+      {step === 5 && <div>다섯번째 스텝</div>}
     </ApplyTemplate>
   );
 }
