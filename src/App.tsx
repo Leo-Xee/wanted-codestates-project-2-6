@@ -19,7 +19,7 @@ const GlobalContainer = styled.div`
 `;
 
 function App() {
-  const [route, setRoute] = useState(page.HOME);
+  const [route, setRoute] = useState(page.APPLY);
 
   return (
     <GlobalContainer>
