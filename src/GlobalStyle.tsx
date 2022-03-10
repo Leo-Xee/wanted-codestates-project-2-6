@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
     --text-disabled: #D3D2D2;
     --btn-disabled: #E2E2E2;
     --bg-form: #F6F6F6;
+    --outline: #EEEEEE;
   }
   /* reset */
   *{margin:0;padding:0;font:inherit;color:inherit;}
