@@ -112,6 +112,7 @@ export const Contents = ({ children }: { children: React.ReactNode }) => {
 
 const ButtonGroupContainer = styled.div`
   position: absolute;
+  background: white;
   bottom: 0;
   left: 0;
   width: 100%;
