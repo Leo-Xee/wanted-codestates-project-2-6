@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BiSearchAlt2, BiX } from "react-icons/bi";
+import { AiFillQuestionCircle } from "react-icons/ai";
 
 import * as S from "./style";
 
@@ -9,6 +10,8 @@ type RegisterAddressProps = {
 
 function RegisterAddress({ setRoute }: RegisterAddressProps) {
   const [isAbleToSearch, setIsAbleToSearch] = useState(false);
+  const [address, setAddress] = useState(null);
+  const [detailAddress, setDetailAddress] = useState(null);
 
   const handleClick = () => {
     setIsAbleToSearch((prev) => !prev);
@@ -16,6 +19,15 @@ function RegisterAddress({ setRoute }: RegisterAddressProps) {
 
   return (
     <div>
+      <S.InfoContainer>
+        <div>
+          <AiFillQuestionCircle size={18} color="#1971c2" />
+        </div>
+        <span>
+          케어코디 서비스는 현재 서울, 경기도, 인천, 부산 지역에서 이용이 가능합니다. 빠른 시일 내
+          서비스 지역을 확대할 수 있도록 노력하겠습니다.
+        </span>
+      </S.InfoContainer>
       {isAbleToSearch ? (
         <S.InputWrapper>
           <S.InputContainer>

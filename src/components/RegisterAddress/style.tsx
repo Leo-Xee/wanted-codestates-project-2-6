@@ -14,9 +14,22 @@ export const DefaultWrapper = styled.div`
     border: none;
     font-size: 1.2rem;
   }
+`;
 
-  &:focus {
-    border: 1px solid red;
+export const InfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 16px;
+  width: 100%;
+  color: #5b5555;
+  font-weight: 500;
+  background-color: #f4f7ff;
+  border-radius: 4px;
+
+  & span {
+    width: 95%;
+    padding-left: 5px;
   }
 `;
 
