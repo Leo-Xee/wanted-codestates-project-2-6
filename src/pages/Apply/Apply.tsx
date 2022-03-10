@@ -3,6 +3,7 @@ import RegisterAddress from "src/components/RegisterAddress/RegisterAddress";
 import ApplyTemplate from "../../components/ApplyTemplate";
 import CarePlace from "../../components/CarePlace";
 import CareType from "../../components/CareType";
+import CarePlace from "../../components/CarePlace";
 import Time from "../../components/Time/Time";
 
 type ApplyProps = {

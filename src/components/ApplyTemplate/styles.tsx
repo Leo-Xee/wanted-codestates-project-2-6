@@ -67,9 +67,10 @@ const stepData = [
   { id: 0, stepName: "", stepDescription: "" },
   { id: 1, stepName: "돌봄 유형", stepDescription: "돌봄 유형을 설정해주세요" },
   { id: 2, stepName: "돌봄 스케줄", stepDescription: "돌봄 스케줄을 설정해주세요" },
-  { id: 3, stepName: "돌봄 주소", stepDescription: "돌봄 주소를 입력해주세요" },
+  { id: 3, stepName: "돌봄 장소", stepDescription: "돌봄 장소는 어디신가요?" },
+  { id: 4, stepName: "돌봄 주소", stepDescription: "돌봄 주소를 입력해주세요" },
   {
-    id: 4,
+    id: 5,
     stepName: "신청 완료",
     stepDescription: "인증하신 휴대폰 번호로 케어코디 프로필을 받아보실 수 있어요 ☺️",
   },
@@ -81,7 +82,7 @@ export const StepIndicator = ({ step }: { step: number }) => {
       <StepLabel>{stepData[step].stepName}</StepLabel>
       <StepCount>
         <span className="currentStep">{step}</span>
-        <span className="totalStep"> / 4</span>
+        <span className="totalStep"> / 5</span>
       </StepCount>
     </StepContainer>
   );
@@ -111,6 +112,7 @@ export const Contents = ({ children }: { children: React.ReactNode }) => {
 
 const ButtonGroupContainer = styled.div`
   position: absolute;
+  background: white;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -155,7 +157,7 @@ export const ButtonGroup = ({
       </PrevButton>
       <NextButton
         onClick={() => {
-          if (step === 4) {
+          if (step === 5) {
             setRoute("complete");
           } else {
             setStep((step) => step + 1);
