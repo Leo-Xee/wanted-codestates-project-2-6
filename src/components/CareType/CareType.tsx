@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./styles";
-import ButtonWithImg from "../ButtonWithEmoji";
+import ButtonWithEmoji from "../ButtonWithEmoji";
 
 const typeData = [
   { id: 1, emoji: "🌞", label: "24시간 상주" },
@@ -12,7 +12,7 @@ function CareType() {
   return (
     <S.ButtonGroup>
       {typeData.map((type) => (
-        <ButtonWithImg
+        <ButtonWithEmoji
           key={type.id}
           isActive={selectedType === type.id}
           emoji={type.emoji}
