@@ -12,6 +12,11 @@ export const TypeWrapper = styled.div`
   }
 `;
 
+export const ButtonGroup = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
 export const TypesubTitle = styled.p`
   font-size: 16px;
   font-weight: bold;
@@ -52,7 +57,8 @@ export const TypeDiagnose = styled.div`
   }
   & > input {
     width: 100%;
-    padding: 5px 10px;
+    height: 40px;
+    padding: 10px;
     border: 1px solid lightgray;
     border-radius: 5px;
     font-size: 12px;
@@ -70,6 +76,7 @@ export const FormWrapper = styled.div`
   align-items: center;
 
   * {
+    font-size: 12px;
     margin-right: 5px;
   }
 `;

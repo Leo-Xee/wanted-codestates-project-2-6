@@ -31,12 +31,12 @@ function SelectBox() {
       </S.SelectWindow>
       {showSelectBox && (
         <S.SelectOptions>
-          {longtermLevel.slice(1).map((level, index) => {
+          {longtermLevel.map((level, index) => {
             return (
               <div
                 key={index}
                 onClick={() => {
-                  setSelectIndex(index + 1);
+                  setSelectIndex(index);
                   setShowSelectBox(false);
                 }}
               >

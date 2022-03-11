@@ -13,8 +13,7 @@ export const RadioBox = styled.div`
 
   div {
     width: 49%;
-    height: 30px;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid lightgray;
     border-radius: 5px;
     * {
