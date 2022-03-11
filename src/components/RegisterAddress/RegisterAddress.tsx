@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import React, { useContext, useState } from "react";
-import { BiSearchAlt2 } from "react-icons/bi";
+import { BiSearchAlt2, BiX } from "react-icons/bi";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import axios from "axios";
 
@@ -15,7 +18,9 @@ type RegisterAddressProps = {
 };
 
 function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
-  const [address, setAddress] = useState("skdfjsdklfjsdklfjsdfksjdflksdjfsdfsdsdsss");
+  const [address, setAddress] = useState([]);
+  const [addressInput, setAddressInput] = useState("asdasd");
+
   const [detailAddress, setDetailAddress] = useState(null);
   const [modalState, setModalState] = useState(false);
   const data = useApplicationState();
@@ -80,8 +85,6 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
 
                 <S.AddressContent>
                   {address !== null ? (
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                     address.map((value: any, idx: number) => (
                       <ul key={idx}>
                         <li>{value.roadAddr}</li>
@@ -122,11 +125,11 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
           서비스 지역을 확대할 수 있도록 노력하겠습니다.
         </span>
       </S.InfoContainer>
-      {address ? (
+      {addressInput ? (
         <S.InputWrapper>
           <S.InputContainer onClick={() => setModalState(true)}>
             <BiSearchAlt2 className="searchIcon" size={15} />
-            <span>{address}</span>
+            <span>{addressInput}</span>
             <button type="button" onClick={handleClick}>
               재검색
             </button>
