@@ -110,7 +110,6 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
 
   // modal address search
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAddrNotice(e.target.value);
     void getAddress(e.target.value);
   };
 

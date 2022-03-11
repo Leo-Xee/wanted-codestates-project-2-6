@@ -1,10 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+
+import { page } from "src/constant";
+import { useApplicationDispatch } from "src/contexts/ApplicationContext";
+
 type CompleteProps = {
   setRoute: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function Complete({ setRoute }: CompleteProps) {
+  const dispatch = useApplicationDispatch();
+
+  const handleClick = () => {
+    setRoute(page.HOME);
+    dispatch({ type: "RESET" });
+  };
+
   return (
     <Container>
       <Header>돌보미 신청하기</Header>
@@ -15,7 +26,9 @@ function Complete({ setRoute }: CompleteProps) {
         케어코디님들이 신청할 때 마다 앱이나 문자로 알림을 보내드립니다.
         <br /> 케어코디님의 지원 알림을 기다려주세요!
       </p>
-      <EndButton>끝내기</EndButton>
+      <EndButton type="button" onClick={handleClick}>
+        끝내기
+      </EndButton>
     </Container>
   );
 }

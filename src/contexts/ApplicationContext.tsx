@@ -61,19 +61,22 @@ const SET_ADDRESS = "SET_ADDRESS" as const;
 const SET_SCHEDULE = "SET_SCHEDULE" as const;
 const SET_PHONE_NUMBER = "SET_PHONE_NUMBER" as const;
 const SET_COVID_TEST_TYPE = "SET_COVID_TEST_TYPE" as const;
+const RESET = "RESET" as const;
 
 type SET_WORK_TYPE = "SET_WORK_TYPE";
 type SET_ADDRESS = "SET_ADDRESS";
 type SET_SCHEDULE = "SET_SCHEDULE";
 type SET_PHONE_NUMBER = "SET_PHONE_NUMBER";
 type SET_COVID_TEST_TYPE = "SET_COVID_TEST_TYPE";
+type RESET = "RESET";
 
 type Action =
   | { type: SET_WORK_TYPE; workType: WorkType }
   | { type: SET_ADDRESS; address: Address }
   | { type: SET_SCHEDULE; schedule: Schedule }
   | { type: SET_PHONE_NUMBER; phoneNumber: PhoneNumber }
-  | { type: SET_COVID_TEST_TYPE; covidTestType: CovidTestType };
+  | { type: SET_COVID_TEST_TYPE; covidTestType: CovidTestType }
+  | { type: RESET };
 
 type ApplicationDispatch = Dispatch<Action>;
 
@@ -89,6 +92,8 @@ function applicationReducer(state: State, action: Action): State {
       return { ...state, phoneNumber: action.phoneNumber };
     case SET_COVID_TEST_TYPE:
       return { ...state, covidTestType: action.covidTestType };
+    case RESET:
+      return { ...initialApplicationState };
   }
 }
 
