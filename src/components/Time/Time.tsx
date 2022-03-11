@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 import Options from "../Options";
@@ -40,9 +40,11 @@ function Time() {
     "오후 11시",
   ]);
 
+  const staticState = useStaticState();
+
   const setVisitHourOptions = () => {
     const now = new Date().getHours();
-    const start = now + useStaticState().policy.minBeforeFirstScheduleVisitHour;
+    const start = now + staticState.policy.minBeforeFirstScheduleVisitHour;
     const result = [...visitHourList].slice(start);
     setVisitHourList(result);
   };
@@ -57,8 +59,8 @@ function Time() {
   const handleCaraHours = () => {
     setShow(true);
     setTitle("하루 돌봄 시간 선택");
-    const careHours = useStaticState().careHours.map((item) => item.text);
-    setOptions(careHours);
+    const hours = staticState.careHours.map((item) => item.text);
+    setOptions(hours);
   };
 
   return (
