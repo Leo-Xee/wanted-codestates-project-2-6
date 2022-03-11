@@ -24,7 +24,7 @@ export const InfoContainer = styled.div`
   margin-bottom: 20px;
   padding: 16px;
   width: 100%;
-  color: #5b5555;
+  color: var(--text);
   font-weight: 500;
   background-color: #f4f7ff;
   border-radius: 5px;
@@ -71,7 +71,7 @@ export const DisplayContainer = styled.div`
   display: flex;
   align-items: center;
   width: 300px;
-  color: #5b5555;
+  color: var(--text);
 
   & span {
     padding-left: 10px;
@@ -85,6 +85,9 @@ export const DetailWrapper = styled(DefaultWrapper)`
   justify-content: flex-start;
 
   & input {
+    color: var(--text);
+    font-size: 1.2rem;
+    font-weight: 500;
     padding-left: 20px;
     width: 260px;
   }
@@ -114,9 +117,39 @@ export const CovidContainer = styled.div`
     border-radius: 5px;
     cursor: pointer;
 
-    & span {
-      padding-left: 10px;
+    & input[type="radio"] {
+      position: relative;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      cursor: pointer;
     }
+
+    & input[type="radio"]:before {
+      content: "";
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    & input[type="radio"]:checked:before {
+      background-color: var(--primary);
+    }
+
+    & input[type="radio"]:checked {
+      border-color: var(--primary);
+      /* background-color: var(--primary); */
+    }
+  }
+
+  & span {
+    padding-left: 10px;
   }
 `;
 

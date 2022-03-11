@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiSearchAlt2, BiX } from "react-icons/bi";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import axios from "axios";
@@ -51,17 +51,7 @@ type Addr = {
   udrtYn: string;
   zipNo: string;
 };
-type ContextAddr = {
-  addressDetail: string;
-  jibunAddress: string;
-  liName: string;
-  locationCode: string;
-  roadCode: string;
-  myundongName: string;
-  roadAddress: string;
-  sidoName: string;
-  sigunguName: string;
-};
+
 function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
   const [address, setAddress] = useState<Addr[]>([]);
   const [detailAddress, setDetailAddress] = useState<string>("");
@@ -72,16 +62,15 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
   const [covidTest, setCovidTest] = useState<string | null>(null);
   const dispatch = useApplicationDispatch();
 
-  console.log(detailAddress);
-
-  const handleNextClick = () => {
-    if (filterdAddr) {
+  useEffect(() => {
+    if (filterdAddr?.roadAddress && detailAddress && covidTest) {
       const tmpObj: Address = filterdAddr;
       tmpObj.addressDetail = detailAddress;
       dispatch({ type: "SET_ADDRESS", address: tmpObj });
       dispatch({ type: "SET_COVID_TEST_TYPE", covidTestType: covidTest });
+      setDisabled(false);
     }
-  };
+  }, [filterdAddr, detailAddress, covidTest]);
 
   const handleAddressClick = (value: Addr) => {
     const filterdObj: Address = {
@@ -121,7 +110,6 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
 
   // modal address search
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAddrNotice(e.target.value);
     void getAddress(e.target.value);
   };
 
@@ -238,22 +226,13 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
         <ul>
           {covidTestTypes.map((v, idx) => (
             <li key={idx} onClick={() => setCovidTest(v.value)}>
-              <label htmlFor={`radioBtn ${idx}`}>
-                <input
-                  id={`radioBtn ${idx}`}
-                  type="radio"
-                  checked={covidTest === v.value}
-                  readOnly
-                />
-              </label>
+              <label htmlFor={`radioBtn ${idx}`} />
+              <input id={`radioBtn ${idx}`} type="radio" checked={covidTest === v.value} readOnly />
               <span>{v.text}</span>
             </li>
           ))}
         </ul>
       </S.CovidContainer>
-      <button type="button" onClick={handleNextClick}>
-        dispatch
-      </button>
     </div>
   );
 }
