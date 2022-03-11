@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 import Options from "../Options";
@@ -13,11 +13,47 @@ function Time() {
   const [startValue, setStartValue] = useState("선택");
   const [oneDayHour, setOneDayHour] = useState("선택");
   const [options, setOptions] = useState([""]);
+  const [visitHour, setVisitHour] = useState([
+    "오전 12시",
+    "오전 1시",
+    "오전 2시",
+    "오전 3시",
+    "오전 4시",
+    "오전 5시",
+    "오전 6시",
+    "오전 7시",
+    "오전 8시",
+    "오전 9시",
+    "오전 10 시",
+    "오전 11시",
+    "오후 12 시",
+    "오후 1시",
+    "오후 2시",
+    "오후 3시",
+    "오후 4시",
+    "오후 5시",
+    "오후 6시",
+    "오후 7시",
+    "오후 8시",
+    "오후 9시",
+    "오후 10시",
+    "오후 11시",
+  ]);
+
   const careHours = useStaticState().careHours.map((item) => item.text);
+
+  const setVisitHourOptions = () => {
+    const now = new Date().getHours();
+    const start = now + useStaticState().policy.minBeforeFirstScheduleVisitHour;
+    const result = [...visitHour].slice(start);
+    setVisitHour(result);
+  };
 
   const handleStartTime = () => {
     setShow(true);
     setTitle("돌봄 시작 시간 선택");
+    // setVisitHourOptions();
+    setOptions(visitHour);
   };
 
   const handleOneDayHour = () => {

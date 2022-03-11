@@ -26,7 +26,8 @@ function Options({ title, options, setStartValue, setOneDayHour, show, setShow }
             <S.Option
               key={option}
               onClick={() => {
-                setOneDayHour(option);
+                title === "돌봄 시작 시간 선택" && setStartValue(option);
+                title === "하루 돌봄 시간 선택" && setOneDayHour(option);
                 setShow(false);
               }}
             >
