@@ -10,7 +10,7 @@ interface Props {
   radioName: string;
   option1: Option;
   option2: Option;
-  setOptions: React.Dispatch<React.SetStateAction<boolean>>;
+  setOptions: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function RadioBox({ radioName, option1, option2, setOptions }: Props) {
@@ -21,7 +21,7 @@ function RadioBox({ radioName, option1, option2, setOptions }: Props) {
           name={radioName}
           type="radio"
           id={option1.id}
-          onChange={() => setOptions(true)}
+          onChange={() => setOptions(1)}
         />
         <label htmlFor={option1.id}>{option1.value}</label>
       </div>
@@ -30,7 +30,7 @@ function RadioBox({ radioName, option1, option2, setOptions }: Props) {
           name={radioName}
           type="radio"
           id={option2.id}
-          onChange={() => setOptions(false)}
+          onChange={() => setOptions(2)}
         />
         <label htmlFor={option2.id}>{option2.value}</label>
       </div>

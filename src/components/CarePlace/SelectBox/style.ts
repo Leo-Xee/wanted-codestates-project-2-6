@@ -6,8 +6,6 @@ export const SelectWrapper = styled.div`
   height: 40px;
   margin-top: 10px;
   font-size: 12px;
-  z-index: 15;
-
   & > * {
     width: 100%;
     position: absolute;
