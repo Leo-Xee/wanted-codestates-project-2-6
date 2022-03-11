@@ -14,9 +14,6 @@ function Apply({ setRoute }: ApplyProps) {
   const [disabled, setDisabled] = useState(true);
 
   return (
-    <ApplyTemplate setRoute={setRoute} step={step} setStep={setStep}>
-      {step === 1 && <CareType />}
-      {step === 2 && <CareSchedule />}
     <ApplyTemplate
       setRoute={setRoute}
       step={step}
@@ -24,6 +21,8 @@ function Apply({ setRoute }: ApplyProps) {
       disabled={disabled}
       setDisabled={setDisabled}
     >
+      {step === 1 && <CareType setDisabled={setDisabled} />}
+      {step === 2 && <CareSchedule />}
       {step === 3 && <CarePlace />}
       {step === 4 && <RegisterAddress setRoute={setRoute} />}
       {step === 5 && <div>다섯번째 스텝</div>}
