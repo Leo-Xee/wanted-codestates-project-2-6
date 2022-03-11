@@ -83,7 +83,6 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
   };
 
   const handleAddressClick = (value: Addr) => {
-    console.log(value);
     const filterdObj = {
       addressDetail: "",
       jibunAddress: value.jibunAddr,
@@ -95,6 +94,8 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
       sidoName: value.siNm,
       sigunguName: value.sggNm,
     };
+    console.log(filterdObj);
+    setFilterdAddr(filterdObj);
   };
   async function getAddress(SearchValue: string) {
     try {
@@ -114,8 +115,6 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
       console.error(error);
     }
   }
-
-  console.log(address);
 
   // modal address search
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
