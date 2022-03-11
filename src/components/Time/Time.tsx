@@ -51,7 +51,7 @@ function Time({ isToday }: Time) {
     if (isToday) {
       const now = new Date().getHours();
       const start = now + staticState.policy.minBeforeFirstScheduleVisitHour;
-      const result = [...visitHourList].slice(start);
+      const result = visitHourList.slice(start);
       setOptions(result);
     } else {
       setOptions(visitHourList);
