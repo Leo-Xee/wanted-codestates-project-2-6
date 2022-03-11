@@ -70,14 +70,14 @@ function Time({ isToday }: Time) {
       <S.Wrapper>
         <S.SelectBoxName>돌봄 시작 시간</S.SelectBoxName>
         <S.SelectBox value={visitHour} onClick={handleVisitHour} readOnly />
-        <S.Icon>
+        <S.Icon onClick={handleVisitHour}>
           <IoIosArrowDown />
         </S.Icon>
       </S.Wrapper>
       <S.Wrapper>
         <S.SelectBoxName>하루 돌봄 시간</S.SelectBoxName>
         <S.SelectBox value={careHours} onClick={handleCaraHours} readOnly />
-        <S.Icon>
+        <S.Icon onClick={handleCaraHours}>
           <IoIosArrowDown />
         </S.Icon>
       </S.Wrapper>
