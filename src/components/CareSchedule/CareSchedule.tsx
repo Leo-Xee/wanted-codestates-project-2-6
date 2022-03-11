@@ -2,7 +2,11 @@ import React, { useMemo, useState } from "react";
 import Time from "../Time";
 import Calendar from "../Calendar";
 
-const Schedule = () => {
+const Schedule = ({
+  setDisabled,
+}: {
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [pickedStartDate, setPickedStartDate] = useState("");
   const [pickedEndDate, setPickedEndDate] = useState("");
   const isToday = useMemo(() => {

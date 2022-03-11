@@ -5,6 +5,7 @@ import Options from "../Options";
 import OptionPortals from "../Options/OptionPortals";
 import * as S from "./style";
 import { useStaticState } from "src/contexts/StaticContext";
+import { useApplicationState } from "src/contexts/ApplicationContext";
 
 interface Time {
   isToday: boolean;
@@ -43,6 +44,9 @@ function Time({ isToday }: Time) {
   ];
 
   const staticState = useStaticState();
+  const applicationState = useApplicationState();
+
+  // applicationState.workType === "24시간 상주"
 
   const handleVisitHour = () => {
     setShow(true);

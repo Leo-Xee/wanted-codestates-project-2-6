@@ -22,7 +22,7 @@ function Apply({ setRoute }: ApplyProps) {
       setDisabled={setDisabled}
     >
       {step === 1 && <CareType setDisabled={setDisabled} />}
-      {step === 2 && <CareSchedule />}
+      {step === 2 && <CareSchedule setDisabled={setDisabled} />}
       {step === 3 && <CarePlace />}
       {step === 4 && <RegisterAddress setRoute={setRoute} />}
       {step === 5 && <div>다섯번째 스텝</div>}
