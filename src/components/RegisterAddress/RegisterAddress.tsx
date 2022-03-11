@@ -142,8 +142,8 @@ function RegisterAddress({ setRoute }: RegisterAddressProps) {
                   {address !== null ? (
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                    address.map((value: any, idx: any) => (
-                      <ul key="idx">
+                    address.map((value: any, idx: number) => (
+                      <ul key={idx}>
                         <li>{value.roadAddr}</li>
                         <li>{value.jibunAddr}</li>
                         <li>{value.zipNo}</li>

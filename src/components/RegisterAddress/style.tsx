@@ -93,10 +93,11 @@ export const ModalCard = styled.div`
   position: relative;
   flex-direction: column;
   width: 100%;
+  max-width: 370px;
   height: 100%;
   border: 0;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  background-color: white;
+  background-color: rgb(246, 246, 246);
 `;
 
 export const ModalContentWrap = styled.div`
@@ -104,7 +105,7 @@ export const ModalContentWrap = styled.div`
   width: 100%;
   flex-direction: column;
   justify-content: center;
-
+  background-color: white;
   & h1 {
     display: inline-block;
     font-size: 1.6rem;
@@ -120,11 +121,9 @@ export const ModalContentWrap = styled.div`
 `;
 
 export const modalBackground = styled.div`
-  opacity: 0.25;
   position: fixed;
   inset: 0;
   z-index: 40;
-  background-color: black;
 `;
 
 export const ModalHeader = styled.div`
@@ -156,7 +155,11 @@ export const AddressContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  height: 500px;
+  overflow: scroll;
+  overflow-x: hidden;
 
   & span {
     width: 100%;
@@ -167,9 +170,8 @@ export const AddressContent = styled.div`
 
 export const AddressNotice = styled.div`
   background-color: rgb(246, 246, 246);
-  height: 100vh;
-
   padding: 20px;
+
   & span {
     display: block;
     text-align: left;
