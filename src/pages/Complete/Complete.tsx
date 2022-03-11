@@ -65,7 +65,6 @@ const Header = styled.div`
   width: 30%;
   height: 56px;
   margin: 0 auto 7%;
-  font-family: "Noto Sans";
   font-weight: 700;
   font-size: 16px !important;
   color: #5b5555;
