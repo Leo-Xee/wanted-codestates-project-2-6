@@ -118,17 +118,33 @@ export const CovidContainer = styled.div`
     cursor: pointer;
 
     & input[type="radio"] {
-      appearance: none;
-      width: 12px;
-      height: 12px;
+      position: relative;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 14px;
+      height: 14px;
       border: 2px solid var(--text);
       border-radius: 50%;
       cursor: pointer;
     }
 
+    & input[type="radio"]:before {
+      content: "";
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    & input[type="radio"]:checked:before {
+      background-color: var(--primary);
+    }
+
     & input[type="radio"]:checked {
       border-color: var(--primary);
-      background-color: var(--primary);
+      /* background-color: var(--primary); */
     }
   }
 
