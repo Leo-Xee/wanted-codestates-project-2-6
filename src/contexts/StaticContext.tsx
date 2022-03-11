@@ -1,7 +1,7 @@
 import React, { useContext, createContext, useEffect, useState } from "react";
 import axios from "axios";
 
-type State = {
+export type State = {
   covidTestTypes: { value: string; text: string }[];
   applymentWorkTypes: {
     value: string;
