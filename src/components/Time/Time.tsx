@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 import Options from "../Options";
@@ -9,12 +9,15 @@ import { useApplicationState } from "src/contexts/ApplicationContext";
 
 interface Time {
   isToday: boolean;
+  visitHour: string;
+  setVisitHour: Dispatch<SetStateAction<string>>;
+  careHours: string;
+  setCareHours: Dispatch<SetStateAction<string>>;
 }
-function Time({ isToday }: Time) {
+function Time({ isToday, visitHour, setVisitHour, careHours, setCareHours }: Time) {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
-  const [visitHour, setVisitHour] = useState("선택");
-  const [careHours, setCareHours] = useState("선택");
+
   const [options, setOptions] = useState([""]);
   const visitHourList = [
     "오전 12시",
@@ -60,6 +63,7 @@ function Time({ isToday }: Time) {
   };
 
   const handleCareHours = () => {
+    if (applicationState.workType === "24시간 상주") return;
     setShow(true);
     setTitle("하루 돌봄 시간 선택");
     const hours = staticState.careHours.map((item) => item.text);

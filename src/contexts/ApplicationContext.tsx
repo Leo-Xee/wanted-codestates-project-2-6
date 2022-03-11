@@ -18,7 +18,7 @@ export type Schedule = {
   startDate: string;
   endDate: string;
   visitTime: string;
-  hour: number;
+  hour: number | null;
 };
 
 export type PhoneNumber = string;
