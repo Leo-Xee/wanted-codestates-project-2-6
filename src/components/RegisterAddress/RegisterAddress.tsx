@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import React, { useContext, useState } from "react";
 import { BiSearchAlt2, BiX } from "react-icons/bi";
 import { AiFillQuestionCircle } from "react-icons/ai";
@@ -11,30 +8,97 @@ import { State, useStaticState } from "src/contexts/StaticContext";
 import { log } from "console";
 import { useApplicationState } from "src/contexts/ApplicationContext";
 import { json } from "stream/consumers";
+import { isExternalModuleNameRelative } from "typescript";
 
 type RegisterAddressProps = {
   setRoute: React.Dispatch<React.SetStateAction<string>>;
   setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+type RespAddr = {
+  results: {
+    common: {
+      errorMessage: string;
+      countPerPage: string;
+      totalCount: string;
+      errorCode: string;
+      currentPage: string;
+    };
+    juso: Addr[];
+  };
+};
+
+type Addr = {
+  admCd: string;
+  bdKdcd: string;
+  bdMgtSn: string;
+  bdNm: string;
+  buldMnnm: string;
+  buldSlno: string;
+  detBdNmList: string;
+  emdNm: string;
+  emdNo: string;
+  engAddr: string;
+  jibunAddr: string;
+  liNm: string;
+  lnbrMnnm: string;
+  lnbrSlno: string;
+  mtYn: string;
+  rn: string;
+  rnMgtSn: string;
+  roadAddr: string;
+  roadAddrPart1: string;
+  roadAddrPart2: string;
+  sggNm: string;
+  siNm: string;
+  udrtYn: string;
+  zipNo: string;
+};
+
+type ContextAddr = {
+  addressDetail: string;
+  jibunAddress: string;
+  liName: string | null;
+  locationCode: string;
+  roadCode: string;
+  myundongName: string;
+  roadAddress: string;
+  sidoName: string;
+  sigunguName: string;
+};
+
 function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
-  const [address, setAddress] = useState([]);
-  const [addressInput, setAddressInput] = useState("asdasd");
+  const [address, setAddress] = useState<Addr[]>([]);
+  const [addressInput, setAddressInput] = useState("주소주소");
+  const [filterdAddr, setFilterdAddr] = useState<ContextAddr>();
 
   const [detailAddress, setDetailAddress] = useState(null);
   const [modalState, setModalState] = useState(false);
   const data = useApplicationState();
   const { covidTestTypes } = useStaticState();
   const [covidTest, setCovidTest] = useState<string | null>(null);
-  console.log(covidTestTypes);
 
   const handleClick = () => {
     // 주소 검색 모달 실행
   };
 
+  const handleAddressClick = (value: Addr) => {
+    console.log(value);
+    const filterdObj = {
+      addressDetail: "",
+      jibunAddress: value.jibunAddr,
+      liName: value.lnbrMnnm,
+      locationCode: value.emdNo,
+      roadCode: value.zipNo,
+      myundongName: value.emdNm,
+      roadAddress: value.roadAddr,
+      sidoName: value.siNm,
+      sigunguName: value.sggNm,
+    };
+  };
   async function getAddress(SearchValue: string) {
     try {
-      const response = await axios.get<any>("https://www.juso.go.kr/addrlink/addrLinkApi.do", {
+      const response = await axios.get<RespAddr>("https://www.juso.go.kr/addrlink/addrLinkApi.do", {
         params: {
           currentPage: 1,
           countPerPage: 10,
@@ -44,7 +108,6 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
         },
       });
       if (response.data) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setAddress(response.data.results.juso);
       }
     } catch (error) {
@@ -85,8 +148,8 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
 
                 <S.AddressContent>
                   {address !== null ? (
-                    address.map((value: any, idx: number) => (
-                      <ul key={idx}>
+                    address.map((value: Addr, idx: number) => (
+                      <ul key={idx} onClick={() => handleAddressClick(value)}>
                         <li>{value.roadAddr}</li>
                         <li>{value.jibunAddr}</li>
                         <li>{value.zipNo}</li>
