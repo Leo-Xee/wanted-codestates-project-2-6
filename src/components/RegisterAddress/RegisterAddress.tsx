@@ -19,18 +19,13 @@ type RegisterAddressProps = {
 
 function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
   const [address, setAddress] = useState([]);
-  const [addressInput, setAddressInput] = useState("asdasd");
+  const [addressInput, setAddressInput] = useState("dd");
 
   const [detailAddress, setDetailAddress] = useState(null);
   const [modalState, setModalState] = useState(false);
   const data = useApplicationState();
   const { covidTestTypes } = useStaticState();
   const [covidTest, setCovidTest] = useState<string | null>(null);
-  console.log(covidTestTypes);
-
-  const handleClick = () => {
-    // 주소 검색 모달 실행
-  };
 
   async function getAddress(SearchValue: string) {
     try {
@@ -51,8 +46,6 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
       console.error(error);
     }
   }
-
-  console.log(address);
 
   // modal address search
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,16 +120,16 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
       </S.InfoContainer>
       {addressInput ? (
         <S.InputWrapper>
-          <S.InputContainer onClick={() => setModalState(true)}>
+          <S.InputContainer>
             <BiSearchAlt2 className="searchIcon" size={15} />
             <span>{addressInput}</span>
-            <button type="button" onClick={handleClick}>
+            <button type="button" onClick={() => setModalState(true)}>
               재검색
             </button>
           </S.InputContainer>
         </S.InputWrapper>
       ) : (
-        <S.DisplayWrapper onClick={handleClick}>
+        <S.DisplayWrapper onClick={() => setModalState(true)}>
           <S.DisplayContainer>
             <BiSearchAlt2 className="searchIcon" size={15} />
             <span>주소 또는 건물명으로 검색</span>
