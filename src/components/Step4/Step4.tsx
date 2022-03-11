@@ -12,11 +12,9 @@ function Step4({ setDisabled }: { setDisabled: Dispatch<SetStateAction<boolean>>
     // value의 값이 숫자가 아닐경우 빈문자열로 replace 해버림.
     //str_text.replace(/찾을 문자열/gi, "변경할 문자열")
     const onlyNumber = value.replace(/[^0-9]/g, "");
-    if (onlyNumber.length === 12) {
-      return setDisabled(false);
-    }
     setPhoneNumber(onlyNumber);
     console.log(phoneNumber);
+    onlyNumber.length >= 11 ? setDisabled(false) : setDisabled(true);
   };
 
   return (

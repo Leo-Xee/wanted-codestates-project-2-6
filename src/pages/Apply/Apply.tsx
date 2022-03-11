@@ -25,7 +25,7 @@ function Apply({ setRoute }: ApplyProps) {
       {step === 1 && <CareType setDisabled={setDisabled} />}
       {step === 2 && <CareSchedule setDisabled={setDisabled} />}
       {step === 3 && <CarePlace setDisabled={setDisabled} />}
-      {step === 4 && <RegisterAddress setRoute={setRoute} />}
+      {step === 4 && <RegisterAddress setRoute={setRoute} setDisabled={setDisabled} />}
       {step === 5 && <Step4 setDisabled={setDisabled} />}
     </ApplyTemplate>
   );
