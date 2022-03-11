@@ -6,6 +6,8 @@ import { page } from "./constant/index";
 import Home from "./pages/Home";
 import Apply from "./pages/Apply";
 import Complete from "./pages/Complete";
+import { StaticProvider } from "./contexts/StaticContext";
+import { ApplicationProvider } from "./contexts/ApplicationContext";
 
 const GlobalContainer = styled.div`
   position: relative;
@@ -19,14 +21,18 @@ const GlobalContainer = styled.div`
 `;
 
 function App() {
-  const [route, setRoute] = useState(page.APPLY);
+  const [route, setRoute] = useState(page.HOME);
 
   return (
-    <GlobalContainer>
-      {route === page.HOME && <Home setRoute={setRoute} />}
-      {route === page.APPLY && <Apply setRoute={setRoute} />}
-      {route === page.COMPLETE && <Complete setRoute={setRoute} />}
-    </GlobalContainer>
+    <StaticProvider>
+      <ApplicationProvider>
+        <GlobalContainer>
+          {route === page.HOME && <Home setRoute={setRoute} />}
+          {route === page.APPLY && <Apply setRoute={setRoute} />}
+          {route === page.COMPLETE && <Complete setRoute={setRoute} />}
+        </GlobalContainer>
+      </ApplicationProvider>
+    </StaticProvider>
   );
 }
 
