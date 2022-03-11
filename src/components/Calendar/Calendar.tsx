@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import * as S from "./style";
 
-const Top = () => {
-  const [pickedStartDate, setPickedStartDate] = useState<string | undefined>(undefined);
-  const [pickedEndDate, setPickedEndDate] = useState<string | undefined>(undefined);
-
+interface Calendar {
+  setPickedEndDate: Dispatch<SetStateAction<string>>;
+  setPickedStartDate: Dispatch<SetStateAction<string>>;
+  pickedStartDate: string;
+  pickedEndDate: string;
+}
+const Calendar = ({
+  setPickedEndDate,
+  setPickedStartDate,
+  pickedStartDate,
+  pickedEndDate,
+}: Calendar) => {
   return (
     <>
       <S.H3>시작일</S.H3>
@@ -26,4 +34,4 @@ const Top = () => {
     </>
   );
 };
-export default Top;
+export default Calendar;

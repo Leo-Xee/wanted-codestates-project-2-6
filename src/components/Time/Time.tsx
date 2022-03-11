@@ -7,7 +7,10 @@ import OptionPortals from "../Options/OptionPortals";
 import * as S from "./style";
 import { useStaticState } from "src/contexts/StaticContext";
 
-function Time() {
+interface Time {
+  isToday: boolean;
+}
+function Time({ isToday }: Time) {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   const [visitHour, setVisitHour] = useState("선택");
