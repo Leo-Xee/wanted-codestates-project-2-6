@@ -128,6 +128,10 @@ const NextButton = styled.button`
   border-radius: 5px;
   padding: 14px;
   flex: 3;
+
+  &:disabled {
+    background: var(--btn-disabled);
+  }
 `;
 
 const PrevButton = styled.button`
@@ -140,23 +144,30 @@ export const ButtonGroup = ({
   step,
   setStep,
   setRoute,
+  disabled,
+  setDisabled,
 }: {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setRoute: React.Dispatch<React.SetStateAction<string>>;
+  disabled: boolean;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <ButtonGroupContainer>
       <PrevButton
         onClick={() => {
           if (step === 1) return;
+          setDisabled(false);
           setStep((step) => step - 1);
         }}
       >
         이전
       </PrevButton>
       <NextButton
+        disabled={disabled}
         onClick={() => {
+          setDisabled(true);
           if (step === 5) {
             setRoute("complete");
           } else {

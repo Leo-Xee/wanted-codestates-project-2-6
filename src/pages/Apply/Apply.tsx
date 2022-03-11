@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import RegisterAddress from "src/components/RegisterAddress/RegisterAddress";
 import Schedule from "src/components/Schedule";
 import ApplyTemplate from "../../components/ApplyTemplate";
-import CarePlace from "../../components/CarePlace";
 import CareType from "../../components/CareType";
+import CarePlace from "src/components/CarePlace";
 import Time from "../../components/Time/Time";
 
 type ApplyProps = {
@@ -12,11 +12,18 @@ type ApplyProps = {
 
 function Apply({ setRoute }: ApplyProps) {
   const [step, setStep] = useState(1);
+  const [disabled, setDisabled] = useState(true);
 
   return (
-    <ApplyTemplate setRoute={setRoute} step={step} setStep={setStep}>
-      {step === 1 && <CareType />}
-      {step === 2 && <Schedule />}
+    <ApplyTemplate
+      setRoute={setRoute}
+      step={step}
+      setStep={setStep}
+      disabled={disabled}
+      setDisabled={setDisabled}
+    >
+      {step === 1 && <CareType setDisabled={setDisabled} />}
+      {step === 2 && <Time />}
       {step === 3 && <CarePlace />}
       {step === 4 && <RegisterAddress setRoute={setRoute} />}
       {step === 5 && <div>다섯번째 스텝</div>}
