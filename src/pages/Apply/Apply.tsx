@@ -23,9 +23,9 @@ function Apply({ setRoute }: ApplyProps) {
       setDisabled={setDisabled}
     >
       {step === 1 && <CareType setDisabled={setDisabled} />}
-      {step === 2 && <Time />}
-      {step === 3 && <CarePlace />}
-      {step === 4 && <RegisterAddress setRoute={setRoute} />}
+      {/* {step === 2 && <Time />} */}
+      {/* {step === 3 && <CarePlace />} */}
+      {step === 2 && <RegisterAddress setDisabled={setDisabled} setRoute={setRoute} />}
       {step === 5 && <div>다섯번째 스텝</div>}
     </ApplyTemplate>
   );

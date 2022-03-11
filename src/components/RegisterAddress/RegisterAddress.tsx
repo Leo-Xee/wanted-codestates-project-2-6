@@ -1,20 +1,27 @@
-import React, { useState } from "react";
-import { BiSearchAlt2, BiX } from "react-icons/bi";
+import React, { useContext, useState } from "react";
+import { BiSearchAlt2 } from "react-icons/bi";
 import { AiFillQuestionCircle } from "react-icons/ai";
 
 import * as S from "./style";
+import { State, useStaticState } from "src/contexts/StaticContext";
+import { log } from "console";
+import { useApplicationState } from "src/contexts/ApplicationContext";
 
 type RegisterAddressProps = {
   setRoute: React.Dispatch<React.SetStateAction<string>>;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function RegisterAddress({ setRoute }: RegisterAddressProps) {
-  const [isAbleToSearch, setIsAbleToSearch] = useState(false);
-  const [address, setAddress] = useState("");
+function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
+  const [address, setAddress] = useState("skdfjsdklfjsdklfjsdfksjdflksdjfsdfsdsdsss");
   const [detailAddress, setDetailAddress] = useState(null);
+  const data = useApplicationState();
+  const { covidTestTypes } = useStaticState();
+  const [covidTest, setCovidTest] = useState<string | null>(null);
+  console.log(covidTestTypes);
 
   const handleClick = () => {
-    setIsAbleToSearch((prev) => !prev);
+    // 주소 검색 모달 실행
   };
 
   return (
@@ -51,6 +58,24 @@ function RegisterAddress({ setRoute }: RegisterAddressProps) {
           <input placeholder="상세 주소를 입력해주세요" />
         </label>
       </S.DetailWrapper>
+      <S.CovidContainer>
+        <h2>코로나 검사가 필요한가요?</h2>
+        <ul>
+          {covidTestTypes.map((v, idx) => (
+            <li key={idx} onClick={() => setCovidTest(v.value)}>
+              <label htmlFor={`radioBtn ${idx}`}>
+                <input
+                  id={`radioBtn ${idx}`}
+                  type="radio"
+                  checked={covidTest === v.value}
+                  readOnly
+                />
+              </label>
+              <span>{v.text}</span>
+            </li>
+          ))}
+        </ul>
+      </S.CovidContainer>
     </div>
   );
 }
