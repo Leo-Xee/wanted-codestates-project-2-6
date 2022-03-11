@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import RegisterAddress from "src/components/RegisterAddress/RegisterAddress";
 import ApplyTemplate from "../../components/ApplyTemplate";
-import CarePlace from "../../components/CarePlace";
 import CareType from "../../components/CareType";
 import CarePlace from "../../components/CarePlace";
 import Time from "../../components/Time/Time";
@@ -15,9 +14,9 @@ function Apply({ setRoute }: ApplyProps) {
 
   return (
     <ApplyTemplate setRoute={setRoute} step={step} setStep={setStep}>
-      {step === 1 && <CareType />}
-      {step === 2 && <Time />}
-      {step === 3 && <CarePlace />}
+      {step === 1 && <div>첫번째 스텝</div>}
+      {step === 2 && <div>두번째 스텝</div>}
+      {step === 3 && <div>세번째 스텝</div>}
       {step === 4 && <RegisterAddress setRoute={setRoute} />}
       {step === 5 && <div>다섯번째 스텝</div>}
     </ApplyTemplate>
