@@ -58,7 +58,7 @@ function Time({ isToday }: Time) {
     }
   };
 
-  const handleCaraHours = () => {
+  const handleCareHours = () => {
     setShow(true);
     setTitle("하루 돌봄 시간 선택");
     const hours = staticState.careHours.map((item) => item.text);
@@ -76,8 +76,8 @@ function Time({ isToday }: Time) {
       </S.Wrapper>
       <S.Wrapper>
         <S.SelectBoxName>하루 돌봄 시간</S.SelectBoxName>
-        <S.SelectBox value={careHours} onClick={handleCaraHours} readOnly />
-        <S.Icon onClick={handleCaraHours}>
+        <S.SelectBox value={careHours} onClick={handleCareHours} readOnly />
+        <S.Icon onClick={handleCareHours}>
           <IoIosArrowDown />
         </S.Icon>
       </S.Wrapper>
