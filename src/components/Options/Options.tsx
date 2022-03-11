@@ -6,11 +6,13 @@ import * as S from "./style";
 type OptionsType = {
   title: string;
   options: string[];
+  setStartValue: React.Dispatch<React.SetStateAction<string>>;
+  setOneDayHour: React.Dispatch<React.SetStateAction<string>>;
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function Options({ title, options, show, setShow }: OptionsType) {
+function Options({ title, options, setStartValue, setOneDayHour, show, setShow }: OptionsType) {
   return (
     <>
       <S.Background onClick={() => setShow(false)} />
@@ -21,7 +23,15 @@ function Options({ title, options, show, setShow }: OptionsType) {
         <S.Title>{title}</S.Title>
         <S.OptionsWrapper>
           {options.map((option) => (
-            <S.Option key={option}>{option}</S.Option>
+            <S.Option
+              key={option}
+              onClick={() => {
+                setOneDayHour(option);
+                setShow(false);
+              }}
+            >
+              {option}
+            </S.Option>
           ))}
         </S.OptionsWrapper>
       </S.Options>
