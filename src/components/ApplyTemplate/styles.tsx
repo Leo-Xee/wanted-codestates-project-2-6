@@ -104,6 +104,8 @@ const ContentsContainer = styled.div`
   width: 100%;
   margin-top: 32px;
   padding: 0 16px;
+  padding-bottom: calc(16px + 65px);
+  overflow: auto;
 `;
 
 export const Contents = ({ children }: { children: React.ReactNode }) => {
@@ -111,11 +113,12 @@ export const Contents = ({ children }: { children: React.ReactNode }) => {
 };
 
 const ButtonGroupContainer = styled.div`
-  position: absolute;
+  position: fixed;
+  width: 360px;
   background: white;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 8px;
   display: flex;
   font-size: 1.4rem;
