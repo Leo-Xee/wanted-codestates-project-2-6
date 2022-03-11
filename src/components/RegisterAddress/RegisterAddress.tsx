@@ -1,90 +1,30 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import React, { useState, useEffect } from "react";
-import { BiSearchAlt2, BiX } from "react-icons/bi";
+import React, { useContext, useState } from "react";
+import { BiSearchAlt2 } from "react-icons/bi";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import axios from "axios";
 
 import * as S from "./style";
+import { State, useStaticState } from "src/contexts/StaticContext";
+import { log } from "console";
+import { useApplicationState } from "src/contexts/ApplicationContext";
 import { json } from "stream/consumers";
 
 type RegisterAddressProps = {
   setRoute: React.Dispatch<React.SetStateAction<string>>;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-// interface Address {
-//   results: {
-//     common: {
-//       errorMessage: string;
-//       countPerPage: string;
-//       totalCount: string;
-//       errorCode: string;
-//       currentPage: string;
-//     };
-//     juso: {
-//       admCd: string;
-//       bdKdcd: string;
-//       bdMgtSn: string;
-//       bdNm: string;
-//       buldMnnm: string;
-//       buldSlno: string;
-//       detBdNmList: string;
-//       emdNm: string;
-//       emdNo: string;
-//       engAddr: string;
-//       jibunAddr: string;
-//       liNm: string;
-//       lnbrMnnm: string;
-//       lnbrSlno: string;
-//       mtYn: string;
-//       rn: string;
-//       rnMgtSn: string;
-//       roadAddr: string;
-//       roadAddrPart1: string;
-//       roadAddrPart2: string;
-//       sggNm: string;
-//       siNm: string;
-//       udrtYn: string;
-//       zipNo: string;
-//     }[];
-//   };
-// }
-
-// interface juso {
-//   admCd: string;
-//   bdKdcd: string;
-//   bdMgtSn: string;
-//   bdNm: string;
-//   buldMnnm: string;
-//   buldSlno: string;
-//   detBdNmList: string;
-//   emdNm: string;
-//   emdNo: string;
-//   engAddr: string;
-//   jibunAddr: string;
-//   liNm: string;
-//   lnbrMnnm: string;
-//   lnbrSlno: string;
-//   mtYn: string;
-//   rn: string;
-//   rnMgtSn: string;
-//   roadAddr: string;
-//   roadAddrPart1: string;
-//   roadAddrPart2: string;
-//   sggNm: string;
-//   siNm: string;
-//   udrtYn: string;
-//   zipNo: string;
-// }
-
-function RegisterAddress({ setRoute }: RegisterAddressProps) {
-  const [isAbleToSearch, setIsAbleToSearch] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const [address, setAddress] = useState<any>([]);
+function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
+  const [address, setAddress] = useState("skdfjsdklfjsdklfjsdfksjdflksdjfsdfsdsdsss");
   const [detailAddress, setDetailAddress] = useState(null);
   const [modalState, setModalState] = useState(false);
+  const data = useApplicationState();
+  const { covidTestTypes } = useStaticState();
+  const [covidTest, setCovidTest] = useState<string | null>(null);
+  console.log(covidTestTypes);
 
   const handleClick = () => {
-    setIsAbleToSearch((prev) => !prev);
+    // 주소 검색 모달 실행
   };
 
   async function getAddress(SearchValue: string) {
@@ -182,15 +122,13 @@ function RegisterAddress({ setRoute }: RegisterAddressProps) {
           서비스 지역을 확대할 수 있도록 노력하겠습니다.
         </span>
       </S.InfoContainer>
-      {isAbleToSearch ? (
+      {address ? (
         <S.InputWrapper>
           <S.InputContainer onClick={() => setModalState(true)}>
             <BiSearchAlt2 className="searchIcon" size={15} />
-            <label>
-              <input placeholder="주소를 검색해주세요" />
-            </label>
+            <span>{address}</span>
             <button type="button" onClick={handleClick}>
-              <BiX size={20} />
+              재검색
             </button>
           </S.InputContainer>
         </S.InputWrapper>
@@ -207,6 +145,24 @@ function RegisterAddress({ setRoute }: RegisterAddressProps) {
           <input placeholder="상세 주소를 입력해주세요" />
         </label>
       </S.DetailWrapper>
+      <S.CovidContainer>
+        <h2>코로나 검사가 필요한가요?</h2>
+        <ul>
+          {covidTestTypes.map((v, idx) => (
+            <li key={idx} onClick={() => setCovidTest(v.value)}>
+              <label htmlFor={`radioBtn ${idx}`}>
+                <input
+                  id={`radioBtn ${idx}`}
+                  type="radio"
+                  checked={covidTest === v.value}
+                  readOnly
+                />
+              </label>
+              <span>{v.text}</span>
+            </li>
+          ))}
+        </ul>
+      </S.CovidContainer>
     </div>
   );
 }

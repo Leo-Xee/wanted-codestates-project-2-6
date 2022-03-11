@@ -10,7 +10,7 @@ export const Background = styled.div`
 
 export const Options = styled.div<{ show: boolean }>`
   width: 360px;
-  height: 500px;
+  height: 380px;
   border-radius: 20px 20px 0 0;
   border: 1px solid #e2e2e2;
   background-color: #f6f6f6;
