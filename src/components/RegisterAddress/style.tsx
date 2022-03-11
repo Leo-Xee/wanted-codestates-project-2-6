@@ -8,11 +8,13 @@ export const DefaultWrapper = styled.div`
   height: 45px;
   margin-bottom: 20px;
   border: 1px solid #dee2e6;
+  border-radius: 5px;
 
-  & input {
+  & input,
+  & span {
     outline: none;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 `;
 
@@ -33,20 +35,31 @@ export const InfoContainer = styled.div`
   }
 `;
 
-export const InputWrapper = styled(DefaultWrapper)``;
+export const InputWrapper = styled(DefaultWrapper)`
+  background-color: #f1f3f5;
+`;
 
 export const InputContainer = styled.div`
   display: flex;
   align-items: center;
   width: 300px;
 
-  & label input {
+  & span {
     padding-left: 10px;
-    width: 260px;
+    width: 240px;
+    color: #ced4da;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   & button {
-    padding: 5px;
+    background: var(--primary);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 14px;
   }
 `;
 

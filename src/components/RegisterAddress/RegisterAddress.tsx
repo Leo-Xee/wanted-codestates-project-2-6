@@ -10,7 +10,7 @@ type RegisterAddressProps = {
 
 function RegisterAddress({ setRoute }: RegisterAddressProps) {
   const [isAbleToSearch, setIsAbleToSearch] = useState(false);
-  const [address, setAddress] = useState(null);
+  const [address, setAddress] = useState("");
   const [detailAddress, setDetailAddress] = useState(null);
 
   const handleClick = () => {
@@ -28,15 +28,13 @@ function RegisterAddress({ setRoute }: RegisterAddressProps) {
           서비스 지역을 확대할 수 있도록 노력하겠습니다.
         </span>
       </S.InfoContainer>
-      {isAbleToSearch ? (
+      {address ? (
         <S.InputWrapper>
           <S.InputContainer>
             <BiSearchAlt2 className="searchIcon" size={15} />
-            <label>
-              <input placeholder="주소를 검색해주세요" />
-            </label>
+            <span>{address}</span>
             <button type="button" onClick={handleClick}>
-              <BiX size={20} />
+              재검색
             </button>
           </S.InputContainer>
         </S.InputWrapper>
