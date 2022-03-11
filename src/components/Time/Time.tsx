@@ -16,7 +16,7 @@ function Time({ isToday }: Time) {
   const [visitHour, setVisitHour] = useState("선택");
   const [careHours, setCareHours] = useState("선택");
   const [options, setOptions] = useState([""]);
-  const [visitHourList, setVisitHourList] = useState([
+  const visitHourList = [
     "오전 12시",
     "오전 1시",
     "오전 2시",
@@ -27,9 +27,9 @@ function Time({ isToday }: Time) {
     "오전 7시",
     "오전 8시",
     "오전 9시",
-    "오전 10 시",
+    "오전 10시",
     "오전 11시",
-    "오후 12 시",
+    "오후 12시",
     "오후 1시",
     "오후 2시",
     "오후 3시",
@@ -41,22 +41,21 @@ function Time({ isToday }: Time) {
     "오후 9시",
     "오후 10시",
     "오후 11시",
-  ]);
+  ];
 
   const staticState = useStaticState();
 
-  const setVisitHourOptions = () => {
-    const now = new Date().getHours();
-    const start = now + staticState.policy.minBeforeFirstScheduleVisitHour;
-    const result = [...visitHourList].slice(start);
-    setVisitHourList(result);
-  };
-
-  const handleStartTime = () => {
+  const handleVisitHour = () => {
     setShow(true);
     setTitle("돌봄 시작 시간 선택");
-    // setVisitHourOptions();
-    setOptions(visitHourList);
+    if (isToday) {
+      const now = new Date().getHours();
+      const start = now + staticState.policy.minBeforeFirstScheduleVisitHour;
+      const result = [...visitHourList].slice(start);
+      setOptions(result);
+    } else {
+      setOptions(visitHourList);
+    }
   };
 
   const handleCaraHours = () => {
@@ -70,7 +69,7 @@ function Time({ isToday }: Time) {
     <div>
       <S.Wrapper>
         <S.SelectBoxName>돌봄 시작 시간</S.SelectBoxName>
-        <S.SelectBox value={visitHour} onClick={handleStartTime} readOnly />
+        <S.SelectBox value={visitHour} onClick={handleVisitHour} readOnly />
         <S.Icon>
           <IoIosArrowDown />
         </S.Icon>
