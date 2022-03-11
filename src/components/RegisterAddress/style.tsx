@@ -154,6 +154,7 @@ export const ModalInput = styled.div`
 
 export const AddressContent = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 20px;
 

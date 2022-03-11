@@ -1,21 +1,117 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import React, { useState, useEffect } from "react";
 import { BiSearchAlt2, BiX } from "react-icons/bi";
 import { AiFillQuestionCircle } from "react-icons/ai";
+import axios from "axios";
 
 import * as S from "./style";
+import { json } from "stream/consumers";
 
 type RegisterAddressProps = {
   setRoute: React.Dispatch<React.SetStateAction<string>>;
 };
 
+// interface Address {
+//   results: {
+//     common: {
+//       errorMessage: string;
+//       countPerPage: string;
+//       totalCount: string;
+//       errorCode: string;
+//       currentPage: string;
+//     };
+//     juso: {
+//       admCd: string;
+//       bdKdcd: string;
+//       bdMgtSn: string;
+//       bdNm: string;
+//       buldMnnm: string;
+//       buldSlno: string;
+//       detBdNmList: string;
+//       emdNm: string;
+//       emdNo: string;
+//       engAddr: string;
+//       jibunAddr: string;
+//       liNm: string;
+//       lnbrMnnm: string;
+//       lnbrSlno: string;
+//       mtYn: string;
+//       rn: string;
+//       rnMgtSn: string;
+//       roadAddr: string;
+//       roadAddrPart1: string;
+//       roadAddrPart2: string;
+//       sggNm: string;
+//       siNm: string;
+//       udrtYn: string;
+//       zipNo: string;
+//     }[];
+//   };
+// }
+
+// interface juso {
+//   admCd: string;
+//   bdKdcd: string;
+//   bdMgtSn: string;
+//   bdNm: string;
+//   buldMnnm: string;
+//   buldSlno: string;
+//   detBdNmList: string;
+//   emdNm: string;
+//   emdNo: string;
+//   engAddr: string;
+//   jibunAddr: string;
+//   liNm: string;
+//   lnbrMnnm: string;
+//   lnbrSlno: string;
+//   mtYn: string;
+//   rn: string;
+//   rnMgtSn: string;
+//   roadAddr: string;
+//   roadAddrPart1: string;
+//   roadAddrPart2: string;
+//   sggNm: string;
+//   siNm: string;
+//   udrtYn: string;
+//   zipNo: string;
+// }
+
 function RegisterAddress({ setRoute }: RegisterAddressProps) {
   const [isAbleToSearch, setIsAbleToSearch] = useState(false);
-  const [address, setAddress] = useState(null);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const [address, setAddress] = useState<any>([]);
   const [detailAddress, setDetailAddress] = useState(null);
   const [modalState, setModalState] = useState(false);
 
   const handleClick = () => {
     setIsAbleToSearch((prev) => !prev);
+  };
+
+  async function getAddress(SearchValue: string) {
+    try {
+      const response = await axios.get<any>("https://www.juso.go.kr/addrlink/addrLinkApi.do", {
+        params: {
+          currentPage: 1,
+          countPerPage: 10,
+          keyword: SearchValue,
+          confmKey: "devU01TX0FVVEgyMDIyMDEyODIzMjIyNjExMjE5NjE=",
+          resultType: "json",
+        },
+      });
+      if (response.data) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        setAddress(response.data.results.juso);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  console.log(address);
+
+  // modal address search
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    void getAddress(e.target.value);
   };
 
   return (
@@ -36,15 +132,30 @@ function RegisterAddress({ setRoute }: RegisterAddressProps) {
                   <span>
                     <BiSearchAlt2 className="searchIcon" />
                   </span>
-                  <input placeholder="주소 또는 건물명으로 검색"></input>
+                  <input
+                    placeholder="주소 또는 건물명으로 검색"
+                    onChange={(e) => handleAddressChange(e)}
+                  ></input>
                 </S.ModalInput>
 
                 <S.AddressContent>
-                  <span>
-                    찾으시려는 도로명 주소의 건물번호 또는 시설명까지 상세히 입력 후 검색해주세요.
-                    <br />
-                    예) 중앙동, 불정로 432번길
-                  </span>
+                  {address !== null ? (
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+                    address.map((value: any, idx: any) => (
+                      <ul key="idx">
+                        <li>{value.roadAddr}</li>
+                        <li>{value.jibunAddr}</li>
+                        <li>{value.zipNo}</li>
+                      </ul>
+                    ))
+                  ) : (
+                    <span>
+                      찾으시려는 도로명 주소의 건물번호 또는 시설명까지 상세히 입력 후 검색해주세요.
+                      <br />
+                      예) 중앙동, 불정로 432번길
+                    </span>
+                  )}
                 </S.AddressContent>
 
                 <S.AddressNotice>
