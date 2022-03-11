@@ -14,24 +14,24 @@ const Calendar = ({
   pickedEndDate,
 }: Calendar) => {
   return (
-    <>
-      <S.H3>시작일</S.H3>
-      <S.InpWrapper>
+    <S.Wrapper>
+      <S.Container>
+        <S.H3>시작일</S.H3>
         <S.Input
           type="date"
           value={pickedStartDate}
           onChange={(e) => setPickedStartDate(e.target.value)}
         />
-      </S.InpWrapper>
-      <S.H3>종료일</S.H3>
-      <S.InpWrapper>
+      </S.Container>
+      <S.Container>
+        <S.H3>종료일</S.H3>
         <S.Input
           type="date"
           value={pickedEndDate}
           onChange={(e) => setPickedEndDate(e.target.value)}
         />
-      </S.InpWrapper>
-    </>
+      </S.Container>
+    </S.Wrapper>
   );
 };
 export default Calendar;

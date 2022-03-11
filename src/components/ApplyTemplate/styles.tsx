@@ -123,6 +123,7 @@ const ButtonGroupContainer = styled.div`
   display: flex;
   font-size: 1.4rem;
   font-weight: bold;
+  z-index: 20;
 `;
 
 const NextButton = styled.button`

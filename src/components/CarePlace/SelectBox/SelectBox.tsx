@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import * as S from "./style";
 import { AiOutlineUp, AiOutlineDown } from "react-icons/ai";
 
-function SelectBox() {
+interface Props {
+  setlongtermLvl: React.Dispatch<React.SetStateAction<number>>;
+}
+
+function SelectBox({ setlongtermLvl }: Props) {
   const longtermLevel = [
     "선택",
     "등급 모름",
@@ -37,6 +41,7 @@ function SelectBox() {
                 key={index}
                 onClick={() => {
                   setSelectIndex(index);
+                  setlongtermLvl(index === 0 ? 0 : 1);
                   setShowSelectBox(false);
                 }}
               >
