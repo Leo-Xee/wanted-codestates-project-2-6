@@ -1,14 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { BiSearchAlt2, BiX } from "react-icons/bi";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import axios from "axios";
 
 import * as S from "./style";
-import { State, useStaticState } from "src/contexts/StaticContext";
-import { log } from "console";
-import { useApplicationState } from "src/contexts/ApplicationContext";
-import { json } from "stream/consumers";
-import { isExternalModuleNameRelative } from "typescript";
+import { useStaticState } from "src/contexts/StaticContext";
+import { Address, useApplicationDispatch } from "src/contexts/ApplicationContext";
 
 type RegisterAddressProps = {
   setRoute: React.Dispatch<React.SetStateAction<string>>;
@@ -54,11 +51,10 @@ type Addr = {
   udrtYn: string;
   zipNo: string;
 };
-
 type ContextAddr = {
   addressDetail: string;
   jibunAddress: string;
-  liName: string | null;
+  liName: string;
   locationCode: string;
   roadCode: string;
   myundongName: string;
@@ -66,24 +62,29 @@ type ContextAddr = {
   sidoName: string;
   sigunguName: string;
 };
-
 function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
   const [address, setAddress] = useState<Addr[]>([]);
-  const [addressInput, setAddressInput] = useState("주소주소");
-  const [filterdAddr, setFilterdAddr] = useState<ContextAddr>();
+  const [detailAddress, setDetailAddress] = useState<string>("");
+  const [filterdAddr, setFilterdAddr] = useState<Address>();
 
-  const [detailAddress, setDetailAddress] = useState(null);
   const [modalState, setModalState] = useState(false);
-  const data = useApplicationState();
   const { covidTestTypes } = useStaticState();
   const [covidTest, setCovidTest] = useState<string | null>(null);
+  const dispatch = useApplicationDispatch();
 
-  const handleClick = () => {
-    // 주소 검색 모달 실행
+  console.log(detailAddress);
+
+  const handleNextClick = () => {
+    if (filterdAddr) {
+      const tmpObj: Address = filterdAddr;
+      tmpObj.addressDetail = detailAddress;
+      dispatch({ type: "SET_ADDRESS", address: tmpObj });
+      dispatch({ type: "SET_COVID_TEST_TYPE", covidTestType: covidTest });
+    }
   };
 
   const handleAddressClick = (value: Addr) => {
-    const filterdObj = {
+    const filterdObj: Address = {
       addressDetail: "",
       jibunAddress: value.jibunAddr,
       liName: value.lnbrMnnm,
@@ -97,6 +98,7 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
     console.log(filterdObj);
     setFilterdAddr(filterdObj);
   };
+
   async function getAddress(SearchValue: string) {
     try {
       const response = await axios.get<RespAddr>("https://www.juso.go.kr/addrlink/addrLinkApi.do", {
@@ -187,18 +189,18 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
           서비스 지역을 확대할 수 있도록 노력하겠습니다.
         </span>
       </S.InfoContainer>
-      {addressInput ? (
+      {filterdAddr?.roadAddress ? (
         <S.InputWrapper>
-          <S.InputContainer onClick={() => setModalState(true)}>
+          <S.InputContainer>
             <BiSearchAlt2 className="searchIcon" size={15} />
-            <span>{addressInput}</span>
-            <button type="button" onClick={handleClick}>
+            <span>{filterdAddr.roadAddress}</span>
+            <button type="button" onClick={() => setModalState(true)}>
               재검색
             </button>
           </S.InputContainer>
         </S.InputWrapper>
       ) : (
-        <S.DisplayWrapper onClick={handleClick}>
+        <S.DisplayWrapper onClick={() => setModalState(true)}>
           <S.DisplayContainer>
             <BiSearchAlt2 className="searchIcon" size={15} />
             <span>주소 또는 건물명으로 검색</span>
@@ -207,7 +209,10 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
       )}
       <S.DetailWrapper>
         <label>
-          <input placeholder="상세 주소를 입력해주세요" />
+          <input
+            placeholder="상세 주소를 입력해주세요"
+            onChange={(e) => setDetailAddress(e.target.value)}
+          />
         </label>
       </S.DetailWrapper>
       <S.CovidContainer>
@@ -228,6 +233,9 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
           ))}
         </ul>
       </S.CovidContainer>
+      <button type="button" onClick={handleNextClick}>
+        dispatch
+      </button>
     </div>
   );
 }
