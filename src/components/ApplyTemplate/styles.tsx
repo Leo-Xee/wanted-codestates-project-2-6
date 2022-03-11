@@ -104,6 +104,8 @@ const ContentsContainer = styled.div`
   width: 100%;
   margin-top: 32px;
   padding: 0 16px;
+  padding-bottom: calc(16px + 65px);
+  overflow: auto;
 `;
 
 export const Contents = ({ children }: { children: React.ReactNode }) => {
@@ -111,11 +113,12 @@ export const Contents = ({ children }: { children: React.ReactNode }) => {
 };
 
 const ButtonGroupContainer = styled.div`
-  position: absolute;
+  position: fixed;
+  width: 360px;
   background: white;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 8px;
   display: flex;
   font-size: 1.4rem;
@@ -128,6 +131,10 @@ const NextButton = styled.button`
   border-radius: 5px;
   padding: 14px;
   flex: 3;
+
+  &:disabled {
+    background: var(--btn-disabled);
+  }
 `;
 
 const PrevButton = styled.button`
@@ -140,23 +147,30 @@ export const ButtonGroup = ({
   step,
   setStep,
   setRoute,
+  disabled,
+  setDisabled,
 }: {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setRoute: React.Dispatch<React.SetStateAction<string>>;
+  disabled: boolean;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <ButtonGroupContainer>
       <PrevButton
         onClick={() => {
           if (step === 1) return;
+          setDisabled(false);
           setStep((step) => step - 1);
         }}
       >
         이전
       </PrevButton>
       <NextButton
+        disabled={disabled}
         onClick={() => {
+          setDisabled(true);
           if (step === 5) {
             setRoute("complete");
           } else {

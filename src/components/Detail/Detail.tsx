@@ -3,11 +3,9 @@ import * as S from "./style";
 import { useApplicationState } from "src/contexts/ApplicationContext";
 
 function Detail() {
-  const applicationState = useApplicationState(); // context.api
-  console.log(applicationState.workType);
+  const data = useApplicationState(); // context.api
+  console.log(data);
 
-  const careType = "full";
-  const careTime = { startTime: "11", careTime: "4시간" };
   const address = {
     roadAddr: "서울특별시 강남구 테헤란로 428(대치동, 테헤란로 대우 아이빌)",
     jibunAddr: "서울특별시 강남구 대치동 891-6 테헤란로 대우 아이빌",
@@ -18,14 +16,14 @@ function Detail() {
       <S.AppDetail>신청 내역</S.AppDetail>
       <S.CareType>
         <h5>돌봄 유형</h5>
-        {careType === "full" ? <div>🌞 &nbsp;24시간 상주</div> : <div>⏰ &nbsp;시간제 돌봄</div>}
+        <div>{data.workType}</div>
       </S.CareType>
       <S.CareShedule>
         <h5>돌봄 일정</h5>
         <div>
-          <div>2022년 1월 12일 ~ 22년 1월 23일</div>
-          <div>{`${careTime.startTime}부터`}</div>
-          <div>{careTime.careTime}</div>
+          <div>{`${data.schedule.startDate} ~ ${data.schedule.endDate}일`}</div>
+          <div>{`${data.schedule.visitTime}부터`}</div>
+          <div>{data.schedule.hour}</div>
         </div>
       </S.CareShedule>
       <S.Address>

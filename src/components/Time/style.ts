@@ -16,6 +16,7 @@ export const Icon = styled.div`
   right: 10px;
   font-size: 25px;
   color: #b6b3b3;
+  cursor: pointer;
 `;
 
 export const SelectBox = styled.input`
@@ -28,4 +29,9 @@ export const SelectBox = styled.input`
   font-size: 1.5rem;
   padding-left: 16px;
   cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `;
