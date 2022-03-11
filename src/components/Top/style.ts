@@ -3,23 +3,9 @@ import styled from "styled-components";
 export const H3 = styled.h3`
   font-size: 14px;
   font-weight: bold;
-`;
-export const Wrapper = styled.div`
-  padding: 0px 10px;
-`;
-export const Cal = styled.div`
-  display: none;
+  margin-bottom: 10px;
 `;
 
-export const DateWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-`;
-
-export const DateTitle = styled.h1`
-  font-size: 14px;
-  font-weight: 700;
-`;
 export const Input = styled.input`
   width: 100%;
   height: 60px;
@@ -36,4 +22,5 @@ export const InpWrapper = styled.div`
   height: 60px;
   background: #f6f6f6;
   border-radius: 4px;
+  margin-bottom: 10px;
 `;
