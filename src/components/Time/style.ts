@@ -29,4 +29,9 @@ export const SelectBox = styled.input`
   font-size: 1.5rem;
   padding-left: 16px;
   cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `;
