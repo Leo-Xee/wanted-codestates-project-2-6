@@ -209,14 +209,8 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
         <ul>
           {covidTestTypes.map((v, idx) => (
             <li key={idx} onClick={() => setCovidTest(v.value)}>
-              <label htmlFor={`radioBtn ${idx}`}>
-                <input
-                  id={`radioBtn ${idx}`}
-                  type="radio"
-                  checked={covidTest === v.value}
-                  readOnly
-                />
-              </label>
+              <label htmlFor={`radioBtn ${idx}`} />
+              <input id={`radioBtn ${idx}`} type="radio" checked={covidTest === v.value} readOnly />
               <span>{v.text}</span>
             </li>
           ))}
