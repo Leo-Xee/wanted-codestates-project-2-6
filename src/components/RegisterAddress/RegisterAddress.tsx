@@ -84,8 +84,9 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
       sidoName: value.siNm,
       sigunguName: value.sggNm,
     };
-    console.log(filterdObj);
+
     setFilterdAddr(filterdObj);
+    setModalState(false);
   };
 
   async function getAddress(SearchValue: string) {
@@ -109,7 +110,13 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
 
   // modal address search
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAddrNotice(e.target.value);
     void getAddress(e.target.value);
+  };
+
+  const handleModalClose = () => {
+    setModalState(false);
+    setAddress([]);
   };
 
   return (
@@ -120,37 +127,48 @@ function RegisterAddress({ setRoute, setDisabled }: RegisterAddressProps) {
             <S.ModalCard>
               <S.ModalContentWrap>
                 <S.ModalHeader>
-                  <h1>주소검색</h1>
-                  <button type="button" onClick={() => setModalState(false)}>
+                  <S.ModalTitle>주소검색</S.ModalTitle>
+                  <S.ModalCloseBtn type="button" onClick={handleModalClose}>
                     <BiX />
-                  </button>
+                  </S.ModalCloseBtn>
                 </S.ModalHeader>
 
-                <S.ModalInput>
-                  <span>
+                <S.ModalInputWrap>
+                  <S.InputIcon>
                     <BiSearchAlt2 className="searchIcon" />
-                  </span>
-                  <input
+                  </S.InputIcon>
+                  <S.ModalInput
                     placeholder="주소 또는 건물명으로 검색"
                     onChange={(e) => handleAddressChange(e)}
-                  ></input>
-                </S.ModalInput>
+                  ></S.ModalInput>
+                </S.ModalInputWrap>
 
                 <S.AddressContent>
-                  {address !== null ? (
+                  {address !== null && address.length !== 0 ? (
                     address.map((value: Addr, idx: number) => (
-                      <ul key={idx} onClick={() => handleAddressClick(value)}>
-                        <li>{value.roadAddr}</li>
-                        <li>{value.jibunAddr}</li>
-                        <li>{value.zipNo}</li>
-                      </ul>
+                      <S.AddrItemWrap key={idx} onClick={() => handleAddressClick(value)}>
+                        <S.RoadAddrWrap>
+                          <S.RoadAddr>{value.roadAddr}</S.RoadAddr>
+                          <S.JibunWrap>
+                            <S.JibunBadge>
+                              <span>지번</span>
+                            </S.JibunBadge>
+                            <S.RoadAddrWrap>
+                              <S.Jibun>{value.jibunAddr}</S.Jibun>
+                            </S.RoadAddrWrap>
+                          </S.JibunWrap>
+                        </S.RoadAddrWrap>
+                        <div>
+                          <S.ZipNo>{value.zipNo}</S.ZipNo>
+                        </div>
+                      </S.AddrItemWrap>
                     ))
                   ) : (
-                    <span>
+                    <S.SearchNotice>
                       찾으시려는 도로명 주소의 건물번호 또는 시설명까지 상세히 입력 후 검색해주세요.
                       <br />
                       예) 중앙동, 불정로 432번길
-                    </span>
+                    </S.SearchNotice>
                   )}
                 </S.AddressContent>
 

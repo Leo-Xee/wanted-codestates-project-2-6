@@ -4,6 +4,7 @@ import CareSchedule from "src/components/CareSchedule/CareSchedule";
 import ApplyTemplate from "../../components/ApplyTemplate";
 import CareType from "../../components/CareType";
 import CarePlace from "src/components/CarePlace";
+import Step4 from "../../components/Step4/Step4";
 
 type ApplyProps = {
   setRoute: React.Dispatch<React.SetStateAction<string>>;
@@ -25,7 +26,7 @@ function Apply({ setRoute }: ApplyProps) {
       {step === 2 && <CareSchedule setDisabled={setDisabled} />}
       {step === 3 && <CarePlace setDisabled={setDisabled} />}
       {step === 4 && <RegisterAddress setRoute={setRoute} setDisabled={setDisabled} />}
-      {step === 5 && <div>다섯번째 스텝</div>}
+      {step === 5 && <Step4 setDisabled={setDisabled} />}
     </ApplyTemplate>
   );
 }
