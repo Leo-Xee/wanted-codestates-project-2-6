@@ -10,7 +10,7 @@ type ApplyProps = {
 };
 
 function Apply({ setRoute }: ApplyProps) {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(4);
   const [disabled, setDisabled] = useState(true);
 
   return (
