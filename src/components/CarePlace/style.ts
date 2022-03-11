@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { AiFillQuestionCircle } from "react-icons/ai";
 
 export const TypeWrapper = styled.div`
-  height: 63vh;
-  overflow: auto;
   & > * {
     margin-bottom: 10px;
   }
