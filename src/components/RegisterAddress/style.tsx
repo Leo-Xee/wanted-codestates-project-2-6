@@ -76,3 +76,105 @@ export const DetailWrapper = styled(DefaultWrapper)`
     width: 260px;
   }
 `;
+
+export const ModalWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+`;
+
+export const ModalCard = styled.div`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  max-width: 370px;
+  height: 100%;
+  border: 0;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  background-color: rgb(246, 246, 246);
+`;
+
+export const ModalContentWrap = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  & h1 {
+    display: inline-block;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  & button {
+    font-size: 2rem;
+    float: left;
+    position: absolute;
+    right: 16px;
+  }
+`;
+
+export const modalBackground = styled.div`
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+`;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+export const ModalInput = styled.div`
+  padding: 8px 8px;
+  display: flex;
+  width: 100%;
+  border: #e2e2e2 1px solid;
+
+  & span {
+    font-size: 2rem;
+    color: #e3e3e3;
+  }
+
+  & input {
+    width: 80%;
+    outline: none;
+    border: none;
+    padding-left: 8px;
+  }
+`;
+
+export const AddressContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  height: 500px;
+  overflow: scroll;
+  overflow-x: hidden;
+
+  & span {
+    width: 100%;
+    text-align: center;
+    color: rgb(182, 179, 179);
+  }
+`;
+
+export const AddressNotice = styled.div`
+  background-color: rgb(246, 246, 246);
+  padding: 20px;
+
+  & span {
+    display: block;
+    text-align: left;
+    color: rgb(182, 179, 179);
+  }
+`;
