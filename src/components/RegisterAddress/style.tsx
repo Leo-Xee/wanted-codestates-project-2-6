@@ -139,7 +139,6 @@ export const ModalCard = styled.div`
   max-width: 370px;
   height: 100%;
   border: 0;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   background-color: rgb(246, 246, 246);
 `;
 
@@ -149,18 +148,20 @@ export const ModalContentWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: white;
-  & h1 {
-    display: inline-block;
-    font-size: 1.6rem;
-    font-weight: 500;
-  }
+`;
 
-  & button {
-    font-size: 2rem;
-    float: left;
-    position: absolute;
-    right: 16px;
-  }
+export const ModalTitle = styled.h1`
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #5b5555;
+`;
+
+export const ModalCloseBtn = styled.button`
+  font-size: 2rem;
+  float: left;
+  position: absolute;
+  right: 16px;
 `;
 
 export const modalBackground = styled.div`
@@ -173,42 +174,43 @@ export const ModalHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: 16px 0;
 `;
 
-export const ModalInput = styled.div`
+export const ModalInputWrap = styled.div`
   padding: 8px 8px;
   display: flex;
-  width: 100%;
-  border: #e2e2e2 1px solid;
+  width: 90%;
+  margin: auto;
+  border: #e3e3e3 1px solid;
+`;
 
-  & span {
-    font-size: 2rem;
-    color: #e3e3e3;
-  }
+export const InputIcon = styled.span`
+  font-size: 2rem;
+  color: #e3e3e3;
+`;
 
-  & input {
-    width: 80%;
-    outline: none;
-    border: none;
-    padding-left: 8px;
-  }
+export const ModalInput = styled.input`
+  width: 80%;
+  outline: none;
+  border: none;
+  padding-left: 8px;
 `;
 
 export const AddressContent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  height: 500px;
+  padding: 5px;
+  width: 100%;
+  height: 400px;
   overflow: scroll;
   overflow-x: hidden;
+`;
 
-  & span {
-    width: 100%;
-    text-align: center;
-    color: rgb(182, 179, 179);
-  }
+export const SearchNotice = styled.span`
+  width: 90%;
+  margin: auto;
+  text-align: center;
 `;
 
 export const AddressNotice = styled.div`
@@ -218,6 +220,54 @@ export const AddressNotice = styled.div`
   & span {
     display: block;
     text-align: left;
-    color: rgb(182, 179, 179);
+    color: #5b5555;
   }
+`;
+
+export const AddrItemWrap = styled.div`
+  display: flex;
+  padding: 12px;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e2e2;
+`;
+export const RoadAddrWrap = styled.p`
+  width: 80%;
+`;
+
+export const RoadAddr = styled.p`
+  font-weight: 600;
+  padding-left: 3px;
+  line-height: 20px;
+  margin-bottom: 5px;
+  font-size: 1.3rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #5b5555;
+`;
+
+export const JibunWrap = styled.div`
+  display: flex;
+`;
+
+export const JibunBadge = styled.div`
+  background-color: rgb(246, 246, 246);
+  border-radius: 10px;
+  padding: 0px 4px;
+`;
+
+export const Jibun = styled.p`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 10px;
+`;
+
+export const ZipNo = styled.span`
+  display: inline-block;
+  color: #5b5555;
+  padding-top: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
 `;
