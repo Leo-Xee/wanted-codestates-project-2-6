@@ -6,13 +6,13 @@ import * as S from "./style";
 type OptionsType = {
   title: string;
   options: string[];
-  setStartValue: React.Dispatch<React.SetStateAction<string>>;
-  setOneDayHour: React.Dispatch<React.SetStateAction<string>>;
+  setVisitHour: React.Dispatch<React.SetStateAction<string>>;
+  setCareHours: React.Dispatch<React.SetStateAction<string>>;
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function Options({ title, options, setStartValue, setOneDayHour, show, setShow }: OptionsType) {
+function Options({ title, options, setVisitHour, setCareHours, show, setShow }: OptionsType) {
   return (
     <>
       <S.Background onClick={() => setShow(false)} />
@@ -26,8 +26,8 @@ function Options({ title, options, setStartValue, setOneDayHour, show, setShow }
             <S.Option
               key={option}
               onClick={() => {
-                title === "돌봄 시작 시간 선택" && setStartValue(option);
-                title === "하루 돌봄 시간 선택" && setOneDayHour(option);
+                title === "돌봄 시작 시간 선택" && setVisitHour(option);
+                title === "하루 돌봄 시간 선택" && setCareHours(option);
                 setShow(false);
               }}
             >

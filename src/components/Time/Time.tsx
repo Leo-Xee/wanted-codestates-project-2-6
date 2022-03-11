@@ -10,10 +10,10 @@ import { useStaticState } from "src/contexts/StaticContext";
 function Time() {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
-  const [startValue, setStartValue] = useState("선택");
-  const [oneDayHour, setOneDayHour] = useState("선택");
+  const [visitHour, setVisitHour] = useState("선택");
+  const [careHours, setCareHours] = useState("선택");
   const [options, setOptions] = useState([""]);
-  const [visitHour, setVisitHour] = useState([
+  const [visitHourList, setVisitHourList] = useState([
     "오전 12시",
     "오전 1시",
     "오전 2시",
@@ -40,25 +40,24 @@ function Time() {
     "오후 11시",
   ]);
 
-  const careHours = useStaticState().careHours.map((item) => item.text);
-
   const setVisitHourOptions = () => {
     const now = new Date().getHours();
     const start = now + useStaticState().policy.minBeforeFirstScheduleVisitHour;
-    const result = [...visitHour].slice(start);
-    setVisitHour(result);
+    const result = [...visitHourList].slice(start);
+    setVisitHourList(result);
   };
 
   const handleStartTime = () => {
     setShow(true);
     setTitle("돌봄 시작 시간 선택");
     // setVisitHourOptions();
-    setOptions(visitHour);
+    setOptions(visitHourList);
   };
 
-  const handleOneDayHour = () => {
+  const handleCaraHours = () => {
     setShow(true);
     setTitle("하루 돌봄 시간 선택");
+    const careHours = useStaticState().careHours.map((item) => item.text);
     setOptions(careHours);
   };
 
@@ -66,14 +65,14 @@ function Time() {
     <div>
       <S.Wrapper>
         <S.SelectBoxName>돌봄 시작 시간</S.SelectBoxName>
-        <S.SelectBox value={startValue} onClick={handleStartTime} readOnly />
+        <S.SelectBox value={visitHour} onClick={handleStartTime} readOnly />
         <S.Icon>
           <IoIosArrowDown />
         </S.Icon>
       </S.Wrapper>
       <S.Wrapper>
         <S.SelectBoxName>하루 돌봄 시간</S.SelectBoxName>
-        <S.SelectBox value={oneDayHour} onClick={handleOneDayHour} readOnly />
+        <S.SelectBox value={careHours} onClick={handleCaraHours} readOnly />
         <S.Icon>
           <IoIosArrowDown />
         </S.Icon>
@@ -83,8 +82,8 @@ function Time() {
           <Options
             title={title}
             options={options}
-            setStartValue={setStartValue}
-            setOneDayHour={setOneDayHour}
+            setVisitHour={setVisitHour}
+            setCareHours={setCareHours}
             show={show}
             setShow={setShow}
           />
