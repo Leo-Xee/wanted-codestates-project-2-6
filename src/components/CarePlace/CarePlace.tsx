@@ -1,20 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import * as S from "./style";
 import RadioBox from "./RadioBox";
 import SelectBox from "./SelectBox";
 import ButtonWithImg from "../ButtonWithEmoji";
 
-function CareType() {
+type FormType = {
+  wantedForm: boolean;
+  tagetGenderForm: boolean;
+  diagnoseForm: boolean;
+  longTermLevelForm: boolean;
+  careGenderForm: boolean;
+};
+
+function CareType({ setDisabled }: { setDisabled: React.Dispatch<React.SetStateAction<boolean>> }) {
   const placeType = [
     { id: 1, emoji: "🏠", label: "자택" },
     { id: 2, emoji: "🏥", label: "병원" },
   ];
+  const [formState, setFormState] = useState<FormType>({
+    wantedForm: false,
+    tagetGenderForm: false,
+    diagnoseForm: false,
+    longTermLevelForm: false,
+    careGenderForm: false,
+  });
   const [selectPlace, setSelectPlace] = useState<number>(0);
-  const [wantSurvice, setWantSurvice] = useState<boolean>(false);
-  const [targetGender, setTargetGender] = useState<boolean>(true);
-  const [careGender, setCareGender] = useState<boolean>(true);
+  const [wantSurvice, setWantSurvice] = useState<number>(0);
+  const [targetGender, setTargetGender] = useState<number>(0);
+  const [careGender, setCareGender] = useState<number>(0);
+  const [longtermLvl, setlongtermLvl] = useState<number>(0);
+  const [diagnoseDetail, setDiagnoseDetail] = useState<string>("");
   const [isDiagnosed, setIsDiagnosed] = useState<boolean>(false);
+
+  useEffect(() => {
+    checkVailidity();
+  }, [
+    selectPlace,
+    wantSurvice,
+    targetGender,
+    careGender,
+    longtermLvl,
+    diagnoseDetail,
+    isDiagnosed,
+  ]);
+
+  const checkVailidity = () => {
+    const isFilledDiagnose = diagnoseDetail !== "" || isDiagnosed ? 1 : 0;
+
+    console.log(targetGender, careGender, longtermLvl, isFilledDiagnose);
+
+    if (selectPlace === 2) {
+      console.log("validate");
+      setDisabled(false);
+    } else if (wantSurvice === 2) {
+      console.log("validate");
+      setDisabled(false);
+    } else if (targetGender * careGender * longtermLvl * isFilledDiagnose) {
+      console.log("validate");
+      setDisabled(false);
+    } else {
+      console.log("not yet");
+      setDisabled(true);
+    }
+  };
 
   return (
     <S.TypeWrapper>
@@ -28,7 +77,7 @@ function CareType() {
             onClick={() => {
               setSelectPlace(type.id);
               if (type.id === 2) {
-                setWantSurvice(false);
+                setWantSurvice(0);
               }
             }}
           />
@@ -51,7 +100,7 @@ function CareType() {
             </p>
           </S.TypeNotice>
 
-          {wantSurvice && (
+          {wantSurvice === 1 && (
             <S.TypeAdditionalInfo>
               <S.TypesubTitle>방문 요양 추가 정보 입력</S.TypesubTitle>
 
@@ -70,15 +119,25 @@ function CareType() {
                 <input
                   type="text"
                   disabled={isDiagnosed}
+                  value={diagnoseDetail}
                   placeholder={isDiagnosed ? "" : "직접입력"}
+                  onChange={(event) => {
+                    setDiagnoseDetail(event.target.value);
+                  }}
                 />
                 <S.FormWrapper>
-                  <S.CheckBox id="diagnosis" onChange={() => setIsDiagnosed(!isDiagnosed)} />
+                  <S.CheckBox
+                    id="diagnosis"
+                    onChange={() => {
+                      setIsDiagnosed(!isDiagnosed);
+                      setDiagnoseDetail("");
+                    }}
+                  />
                   <label htmlFor="diagnosis">진단명 없음</label>
                 </S.FormWrapper>
               </S.TypeDiagnose>
               <S.TypesubTitle>장기요양등급</S.TypesubTitle>
-              <SelectBox />
+              <SelectBox setlongtermLvl={setlongtermLvl} />
 
               <S.TypesubTitle>선호 간병인 성별</S.TypesubTitle>
               <RadioBox
