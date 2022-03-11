@@ -16,6 +16,7 @@ export const Icon = styled.div`
   right: 10px;
   font-size: 25px;
   color: #b6b3b3;
+  cursor: pointer;
 `;
 
 export const SelectBox = styled.input`
