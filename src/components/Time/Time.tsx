@@ -46,8 +46,6 @@ function Time({ isToday }: Time) {
   const staticState = useStaticState();
   const applicationState = useApplicationState();
 
-  // applicationState.workType === "24시간 상주"
-
   const handleVisitHour = () => {
     setShow(true);
     setTitle("돌봄 시작 시간 선택");
@@ -79,7 +77,12 @@ function Time({ isToday }: Time) {
       </S.Wrapper>
       <S.Wrapper>
         <S.SelectBoxName>하루 돌봄 시간</S.SelectBoxName>
-        <S.SelectBox value={careHours} onClick={handleCareHours} readOnly />
+        <S.SelectBox
+          disabled={applicationState.workType === "24시간 상주"}
+          value={applicationState.workType === "24시간 상주" ? "24시간" : careHours}
+          onClick={handleCareHours}
+          readOnly
+        />
         <S.Icon onClick={handleCareHours}>
           <IoIosArrowDown />
         </S.Icon>
