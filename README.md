@@ -28,12 +28,64 @@
 
 ---
 
-### 2팀 : ** 페이지 ([허민](https://github.com/hhhminme), [이장민](https://github.com/leo-xee), [신항민](https://github.com/ssinking91))
+### 2팀 : 주소 및 완료 페이지 ([허민](https://github.com/hhhminme), [이장민](https://github.com/leo-xee), [신항민](https://github.com/ssinking91))
 
 ### ** 기능
+<img src="https://user-images.githubusercontent.com/54930877/158109938-8af81616-58b6-4d9f-9e54-c6dc341810c3.gif" width=30% />
 
-내용
+주소페이지는 모달을 통해 구현을 하였습니다. openAPI 통신 시 필요한 엔드포인트와 key는 .env 파일에 넣어 사용을 하였습니다. 
 
+```tsx
+  async function getAddress(SearchValue: string) {
+    try {
+      const response = await axios.get<RespAddr>(process.env.REACT_APP_ADDRESS_URL as string, {
+        params: {
+          currentPage: 1,
+          countPerPage: 10,
+          keyword: SearchValue,
+          confmKey: process.env.REACT_APP_ADDRESS_API_KEY,
+          resultType: "json",
+        },
+      });
+      if (response.data) {
+        setAddress(response.data.results.juso);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+```
+이때 통신된 데이터 결과 값은 Address state에 저장하여 목록에 출력을 해주고 있습니다. 
+이때 사용자가 주소를 클릭하였을 경우, 해당 내용을 필터링하여 저장하고 차후 상세주소를 입력하면 해당 내용을 context에 저장하여 완료페이지에서도 사용할 수 있도록 구현하였습니다.
+
+```tsx
+  const handleAddressClick = (value: Addr) => {
+    const filterdObj: Address = {
+      addressDetail: "",
+      jibunAddress: value.jibunAddr,
+      liName: value.lnbrMnnm,
+      locationCode: value.emdNo,
+      roadCode: value.zipNo,
+      myundongName: value.emdNm,
+      roadAddress: value.roadAddr,
+      sidoName: value.siNm,
+      sigunguName: value.sggNm,
+    };
+    setFilterdAddr(filterdObj);
+    setModalState(false);
+  };
+```
+```tsx
+ useEffect(() => {
+    if (filterdAddr?.roadAddress && detailAddress && covidTest) {
+      const tmpObj: Address = filterdAddr;
+      tmpObj.addressDetail = detailAddress;
+      dispatch({ type: "SET_ADDRESS", address: tmpObj });
+      dispatch({ type: "SET_COVID_TEST_TYPE", covidTestType: covidTest });
+      setDisabled(false);
+    }
+  }, [filterdAddr, detailAddress, covidTest]);
+```
 ### ** 기능
 
 내용
