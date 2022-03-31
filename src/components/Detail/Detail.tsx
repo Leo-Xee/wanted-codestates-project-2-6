@@ -4,7 +4,6 @@ import { useApplicationState } from "src/contexts/ApplicationContext";
 
 function Detail() {
   const data = useApplicationState(); // context.api
-  // console.log(data);
 
   return (
     <S.DetailContainer>
