@@ -11,16 +11,20 @@
   <img src="https://img.shields.io/badge/react--icons-brightgreen?style=for-the-badge" />
 </p>
 
-## 요구 사항 
-
 
 ## 기능 구현
 
-### 1팀 : ** 페이지  ([오카무라카에](https://github.com/kaehehehe), [박상우](https://github.com/SangWoo9734), [전호용](https://github.com/mooroom), [강동진](https://github.com/jinn2u))
+### 1팀 : 돌봄 유형, 돌봄 스케줄, 돌봄 장소 페이지  ([오카무라카에](https://github.com/kaehehehe), [박상우](https://github.com/SangWoo9734), [전호용](https://github.com/mooroom), [강동진](https://github.com/jinn2u))
 
-### ** 기능
+### 돌봄 유형 페이지
+<img width=30% alt="スクリーンショット 2022-03-31 23 05 22" src="https://user-images.githubusercontent.com/77221488/161074338-2e936d37-f236-41fe-8800-9b7a4885bce8.png">
 
-내용
+### 돌봄 스케줄 패이지
+
+<div style={display:flex}>
+  <img src="https://user-images.githubusercontent.com/77221488/161072993-d1eb8a37-ca86-492e-ac2d-6f9d88f95a90.gif" width=30% />
+  <img src="https://user-images.githubusercontent.com/77221488/161073489-3bca62b8-cc59-4190-82be-cfc69cffa9fa.gif" width=30%/>
+</div>
 
 ### ** 기능
 
