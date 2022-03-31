@@ -14,12 +14,12 @@
 
 ## 기능 구현
 
-### 1팀 : 돌봄 유형, 돌봄 스케줄, 돌봄 장소 페이지  ([오카무라카에](https://github.com/kaehehehe), [박상우](https://github.com/SangWoo9734), [전호용](https://github.com/mooroom), [강동진](https://github.com/jinn2u))
+### 1팀 : 유형, 스케줄, 장소 페이지  ([오카무라카에](https://github.com/kaehehehe), [박상우](https://github.com/SangWoo9734), [전호용](https://github.com/mooroom), [강동진](https://github.com/jinn2u))
 
-### 돌봄 유형 페이지
+### 유형 페이지
 <img width=30% alt="スクリーンショット 2022-03-31 23 05 22" src="https://user-images.githubusercontent.com/77221488/161074338-2e936d37-f236-41fe-8800-9b7a4885bce8.png">
 
-### 돌봄 스케줄 패이지
+### 스케줄 패이지
 
 <div style={display:flex}>
   <img src="https://user-images.githubusercontent.com/77221488/161072993-d1eb8a37-ca86-492e-ac2d-6f9d88f95a90.gif" width=30% />
