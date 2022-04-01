@@ -19,7 +19,7 @@
 ### 유형 페이지
 <img width=30% alt="スクリーンショット 2022-03-31 23 05 22" src="https://user-images.githubusercontent.com/77221488/161074338-2e936d37-f236-41fe-8800-9b7a4885bce8.png">
 
-### 스케줄 패이지
+### 스케줄 페이지
 
 <div style={display:flex}>
   <img src="https://user-images.githubusercontent.com/77221488/161072993-d1eb8a37-ca86-492e-ac2d-6f9d88f95a90.gif" width=30% />
