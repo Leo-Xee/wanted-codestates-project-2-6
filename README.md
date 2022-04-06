@@ -94,10 +94,6 @@
     }
   }, [filterdAddr, detailAddress, covidTest]);
 ```
-### ** 기능
-
-내용
-
 ---
 
 
