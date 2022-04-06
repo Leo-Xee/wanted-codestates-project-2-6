@@ -14,6 +14,7 @@
 
 ## 기능 구현
 
+
 ### 1팀 : 유형, 스케줄, 장소 페이지  ([오카무라카에](https://github.com/kaehehehe), [박상우](https://github.com/SangWoo9734), [전호용](https://github.com/mooroom), [강동진](https://github.com/jinn2u))
 
 ### 유형 페이지
@@ -26,9 +27,12 @@
   <img src="https://user-images.githubusercontent.com/77221488/161073489-3bca62b8-cc59-4190-82be-cfc69cffa9fa.gif" width=30%/>
 </div>
 
-### ** 기능
-
-내용
+### 장소 선택 페이지  
+<img src="https://user-images.githubusercontent.com/49917043/161906675-ec15a8a9-9412-49a3-9971-315a67787f3b.gif" width=30% />  
+  
+- 기존에 주어진 요구사항에는 제시되지 않은 페이지지만 실 서비스와 최대한 유사하게 만들기 위해 추가한 페이지입니다.
+- 요양 장소를 선택할 수 있는 페이지로 버튼 선택에 따라 보여지는 UI를 디테일하게 다루는 것이 관건이었습니다.
+- 많은 state와 그에 따른 조건문을 많이 사용해야하는 페이지라고 생각해서 최대한 코드 가독성과 중복을 신경쓰면서 코드를 작성했습니다.  
 
 ---
 
