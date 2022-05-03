@@ -38,7 +38,7 @@
 
 ### 2팀 : 주소 및 완료 페이지 ([허민](https://github.com/hhhminme), [이장민](https://github.com/leo-xee), [신항민](https://github.com/ssinking91))
 
-### ** 기능
+###  기능
 <img src="https://user-images.githubusercontent.com/54930877/158109938-8af81616-58b6-4d9f-9e54-c6dc341810c3.gif" width=30% />
 
 주소페이지는 모달을 통해 구현을 하였습니다. openAPI 통신 시 필요한 엔드포인트와 key는 .env 파일에 넣어 사용을 하였습니다. 
