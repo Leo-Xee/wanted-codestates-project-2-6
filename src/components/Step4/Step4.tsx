@@ -13,7 +13,6 @@ function Step4({ setDisabled }: { setDisabled: Dispatch<SetStateAction<boolean>>
     //str_text.replace(/찾을 문자열/gi, "변경할 문자열")
     const onlyNumber = value.replace(/[^0-9]/g, "");
     setPhoneNumber(onlyNumber);
-    console.log(phoneNumber);
     onlyNumber.length >= 11 ? setDisabled(false) : setDisabled(true);
   };
 

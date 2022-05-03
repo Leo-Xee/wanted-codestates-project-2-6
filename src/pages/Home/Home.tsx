@@ -17,7 +17,6 @@ function Home({ setRoute }: HomeProps) {
         <br />
         <strong>케어코디</strong>
       </S.Title>
-      <h1></h1>
       <S.Button onClick={handleClickBtn}>신청하기</S.Button>
     </S.Container>
   );
